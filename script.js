@@ -1067,7 +1067,7 @@ return;
 newsList.innerHTML = "<p>Loading football news...</p>";
 
 try {
-    const response = await fetch("http://127.0.0.1:3000/api/news");
+   const response = await fetch("https://goalhub-server-kiy9.onrender.com/api/news");
 
     if (!response.ok) {
         throw new Error("News request failed: " + response.status);
