@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>GoalHub - Football</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header class="navbar">
+
+        <div class="logo">GoalHub ⚽</div>
+
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#live">Live Scores</a>
+            <a href="#matches">Matches</a>
+            <a href="#table">Tables</a>
+            <a href="#scorers">Top Scorers</a>
+            <a href="#news">News</a>
+            <a href="#predictions">Predictions</a>
+        </nav>
+
+    </header>
+
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+
+        <div class="hero-content">
+
+            <h1>Welcome to GoalHub ⚽</h1>
+
+            <p>
+                Your home for live scores, fixtures, tables,
+                football news and match predictions.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="#live">Live Scores</a>
+                <a href="#predictions">Make a Prediction</a>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Live Scores -->
+    <section id="live" class="live-section">
+
+        <h2>🔴 Live Scores</h2>
+
+        <div id="live-matches" class="live-matches">
+            <p>Loading live matches...</p>
+        </div>
+
+        <div class="sportscore-credit">
+            Powered by
+            <a href="https://sportscore.com/" target="_blank"
+               rel="noopener noreferrer">SportScore</a>
+        </div>
+
+    </section>
+
+
+    <!-- Upcoming Matches -->
+<section id="matches" class="matches-section">
+
+    <div class="upcoming-heading">
+        <div>
+            <span class="section-tag">FIXTURES</span>
+            <h2 id="upcoming-matches-title">📅 Upcoming Matches</h2>
+            <p class="upcoming-subtitle">
+                Check upcoming fixtures across your favourite leagues.
+            </p>
+        </div>
+
+        <div class="upcoming-league-filter">
+            <label for="upcoming-league-select">Choose League</label>
+
+            <select id="upcoming-league-select">
+                <option value="english-premier-league">Premier League</option>
+                <option value="spanish-la-liga">La Liga</option>
+                <option value="italian-serie-a">Serie A</option>
+                <option value="german-bundesliga">Bundesliga</option>
+                <option value="french-ligue-1">Ligue 1</option>
+                <option value="uefa-champions-league">Champions League</option>
+            </select>
+        </div>
+    </div>
+
+    <div id="matches-list" class="matches-grid">
+        <p>Loading matches...</p>
+    </div>
+
+    <div class="sportscore-credit">
+        Powered by
+        <a href="https://sportscore.com/" target="_blank"
+           rel="noopener noreferrer">SportScore</a>
+    </div>
+
+</section>
+<!-- League Information --><section class="league-info"><!-- League Table: Left Side -->
+<div class="league-table-section">
+
+    <div class="table-heading">
+        <h2 id="league-table-title">🏆 Premier League Table</h2>
+
+        <select id="standings-league-select" aria-label="Choose league table">
+            <option value="english-premier-league">Premier League</option>
+            <option value="spanish-la-liga">La Liga</option>
+            <option value="italian-serie-a">Serie A</option>
+            <option value="german-bundesliga">Bundesliga</option>
+            <option value="french-ligue-1">Ligue 1</option>
+            <option value="uefa-champions-league">Champions League</option>
+        </select>
+    </div>
+
+    <div class="table-container">
+        <table class="goalhub-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Team</th>
+                    <th>P</th>
+                    <th>W</th>
+                    <th>D</th>
+                    <th>L</th>
+                    <th>GF</th>
+                    <th>GA</th>
+                    <th>GD</th>
+                    <th>Pts</th>
+                </tr>
+            </thead>
+
+            <tbody id="league-table">
+                <tr>
+                    <td colspan="10">Loading Premier League table...</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="sportscore-credit">
+        Powered by
+        <a href="https://sportscore.com/" target="_blank" rel="noopener noreferrer">SportScore</a>
+    </div>
+
+</div>
+
+<!-- Top Scorers: Right Side -->
+<div id="scorers" class="scorers-section">
+
+    <h2 id="top-scorers-title">⚽ Premier League Top Scorers</h2>
+
+    <div id="top-scorers" class="scorers-grid">
+        <p>Loading top scorers...</p>
+    </div>
+
+    <button
+        type="button"
+        id="show-more-scorers"
+        class="show-more-btn"
+        hidden>
+        Show More ▼
+    </button>
+
+    <div class="sportscore-credit">
+        Powered by
+        <a href="https://sportscore.com/" target="_blank" rel="noopener noreferrer">SportScore</a>
+    </div>
+
+</div>
+
+</section>
+
+
+    <!-- Football News -->
+    <section id="news" class="news-section">
+
+        <h2>📰 Football News</h2>
+
+        <div id="news-list" class="news-grid">
+            <p>Loading football news...</p>
+        </div>
+
+    </section>
+
+
+    <!-- GoalHub Match Centre --><section id="lineups" class="match-centre"><div class="section-heading">
+    <span class="section-tag">MATCHDAY HUB</span>
+    <h2>⚽ Match Centre</h2>
+    <p>Match details, league standings, recent form and team line-ups.</p>
+</div>
+
+<!-- Match Selector --><div class="match-centre-selector"><div class="match-filter">
+    <label for="league-select">Choose League</label>
+
+    <select id="league-select">
+        <option value="english-premier-league">Premier League</option>
+        <option value="spanish-la-liga">La Liga</option>
+        <option value="italian-serie-a">Serie A</option>
+        <option value="german-bundesliga">Bundesliga</option>
+        <option value="french-ligue-1">Ligue 1</option>
+        <option value="uefa-champions-league">Champions League</option>
+    </select>
+</div>
+
+<div class="match-filter">
+    <label for="match-select">Choose Match</label>
+
+    <select id="match-select">
+        <option value="">Loading available matches...</option>
+    </select>
+</div>
+
+<div class="match-filter">
+    <label for="match-date">Choose Date</label>
+
+    <input type="date" id="match-date">
+</div>
+
+<button type="button" id="load-match-btn" class="match-load-btn">
+    View Match
+</button>
+
+<p id="match-selector-message" class="match-selector-message">
+    Select a league and date to find available matches.
+</p>
+
+</div>
+
+<!-- Match Overview -->
+<div class="match-overview">
+
+    <div class="match-overview-top">
+        <span class="match-competition">ENGLISH PREMIER LEAGUE</span>
+        <span class="match-status">MATCH INFORMATION</span>
+    </div>
+
+    <div class="match-teams">
+
+        <div class="match-team">
+            <div class="match-team-badge">LIV</div>
+            <h3 id="home-team-name">Liverpool</h3>
+            <p>Home team</p>
+        </div>
+
+        <div class="match-score-area">
+            <span class="versus">VS</span>
+            <p id="match-kickoff">Fixture information loading</p>
+        </div>
+
+        <div class="match-team">
+            <div class="match-team-badge">CHE</div>
+            <h3 id="away-team-name">Chelsea</h3>
+            <p>Away team</p>
+        </div>
+
+    </div>
+
+    <div class="stadium-information">
+        <span>🏟️</span>
+        <div>
+            <small>STADIUM</small>
+            <p id="match-stadium">Stadium information loading</p>
+        </div>
+    </div>
+
+</div>
+
+<!-- League Standings -->
+<div class="match-centre-panel">
+
+    <div class="panel-heading">
+        <div>
+            <span class="section-tag">LEAGUE PERFORMANCE</span>
+            <h3>Current League Positions</h3>
+        </div>
+    </div>
+
+    <div class="standings-comparison">
+
+        <div class="standings-team">
+            <h4 id="home-standing-name">Liverpool</h4>
+            <div class="standing-position">
+                <span>Position</span>
+                <strong id="home-position">—</strong>
+            </div>
+            <div class="standing-position">
+                <span>Points</span>
+                <strong id="home-points">—</strong>
+            </div>
+            <div class="standing-position">
+                <span>Matches Played</span>
+                <strong id="home-played">—</strong>
+            </div>
+            <div class="standing-position">
+                <span>Goal Difference</span>
+                <strong id="home-goals">—</strong>
+            </div>
+        </div>
+
+        <div class="standings-divider">VS</div>
+
+        <div class="standings-team">
+            <h4 id="away-standing-name">Chelsea</h4>
+            <div class="standing-position">
+                <span>Position</span>
+                <strong id="away-position">—</strong>
+            </div>
+            <div class="standing-position">
+                <span>Points</span>
+                <strong id="away-points">—</strong>
+            </div>
+            <div class="standing-position">
+                <span>Matches Played</span>
+                <strong id="away-played">—</strong>
+            </div>
+            <div class="standing-position">
+                <span>Goal Difference</span>
+                <strong id="away-goals">—</strong>
+            </div>
+        </div>
+
+    </div>
+
+    <p class="data-note">
+        Current league statistics will appear when the football data source is connected.
+    </p>
+
+</div>
+
+<!-- Recent Form -->
+<div class="match-centre-panel">
+
+    <div class="panel-heading">
+        <div>
+            <span class="section-tag">RECENT PERFORMANCE</span>
+            <h3>Last Five Matches</h3>
+        </div>
+    </div>
+
+    <div class="recent-form-grid">
+
+        <div class="recent-form-team">
+            <h4 id="home-form-name">Liverpool</h4>
+            <div id="home-recent-results" class="recent-results">
+                <p>Recent results will appear here.</p>
+            </div>
+        </div>
+
+        <div class="recent-form-team">
+            <h4 id="away-form-name">Chelsea</h4>
+            <div id="away-recent-results" class="recent-results">
+                <p>Recent results will appear here.</p>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Head-to-Head -->
+<div class="match-centre-panel">
+
+    <div class="panel-heading">
+        <div>
+            <span class="section-tag">RIVALRY HISTORY</span>
+            <h3>Head-to-Head</h3>
+        </div>
+    </div>
+
+    <div class="head-to-head-summary">
+
+        <div class="h2h-stat">
+            <strong id="home-h2h-wins">—</strong>
+            <span id="home-h2h-name">Liverpool Wins</span>
+        </div>
+
+        <div class="h2h-stat">
+            <strong id="h2h-draws">—</strong>
+            <span>Draws</span>
+        </div>
+
+        <div class="h2h-stat">
+            <strong id="away-h2h-wins">—</strong>
+            <span id="away-h2h-name">Chelsea Wins</span>
+        </div>
+
+    </div>
+
+    <div id="head-to-head-results" class="h2h-results">
+        <p>Previous meetings will appear here when connected to football data.</p>
+    </div>
+
+</div>
+
+<!-- Team Line-ups -->
+<div class="match-centre-panel">
+
+    <div class="panel-heading">
+        <div>
+            <span class="section-tag">TEAM SHEETS</span>
+            <h3>Starting Line-ups</h3>
+        </div>
+
+        <span id="lineup-status" class="lineup-status">
+            Awaiting official line-ups
+        </span>
+    </div>
+
+    <div class="lineups-grid">
+
+        <div class="lineup-team">
+            <h4 id="home-lineup-name">Liverpool</h4>
+            <div id="home-formation" class="formation-label">
+                Formation: Awaiting confirmation
+            </div>
+            <div id="home-lineup-players" class="lineup-players">
+                Official starting XI has not been loaded.
+            </div>
+        </div>
+
+        <div class="lineup-team">
+            <h4 id="away-lineup-name">Chelsea</h4>
+            <div id="away-formation" class="formation-label">
+                Formation: Awaiting confirmation
+            </div>
+            <div id="away-lineup-players" class="lineup-players">
+                Official starting XI has not been loaded.
+            </div>
+        </div>
+
+    </div>
+
+    <p class="data-note">
+        Starting XI and substitutes will be shown when official line-up data is available.
+    </p>
+
+</div>
+
+</section>
+
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>

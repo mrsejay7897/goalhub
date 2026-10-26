@@ -1,0 +1,3672 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0b1220;
+    color: white;
+}
+
+.navbar {
+    background: #111c30;
+    min-height: 70px;
+    padding: 15px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    color: #087cff;
+}
+
+nav {
+    display: flex;
+    gap: 25px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+nav a:hover {
+    color: #087cff;
+}
+/* Live Scores */
+
+.live-section {
+    padding: 40px 30px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.live-section h2 {
+    font-size: 26px;
+    margin-bottom: 20px;
+}
+
+.live-card {
+    background: #111c30;
+    border: 1px solid #1f3150;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.league {
+    color: #087cff;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.match {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.team {
+    flex: 1;
+    font-size: 18px;
+}
+
+.team:last-child {
+    text-align: right;
+}
+
+.score {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.score small {
+    background: #e63946;
+    color: white;
+    padding: 5px 8px;
+    border-radius: 5px;
+    font-size: 10px;
+}
+/* Upcoming Matches */
+
+.matches-section {
+    padding: 40px 30px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.matches-section h2 {
+    font-size: 26px;
+    margin-bottom: 20px;
+}
+
+.matches-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.match-card {
+    background: #111c30;
+    border: 1px solid #1f3150;
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+}
+
+.match-date {
+    color: #087cff;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.match-card h3 {
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+.match-card span {
+    display: block;
+    color: #aaa;
+    font-size: 13px;
+    margin: 5px 0;
+}
+
+.match-card p {
+    margin-top: 15px;
+    color: #087cff;
+    font-weight: bold;
+    font-size: 16px;
+}
+/* League Table */
+
+.table-section {
+    padding: 40px 30px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.table-section h2 {
+    font-size: 26px;
+    margin-bottom: 20px;
+}
+
+.table-container {
+    background: #111c30;
+    border-radius: 15px;
+    overflow-x: auto;
+    border: 1px solid #1f3150;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 600px;
+}
+
+th {
+    background: #087cff;
+    color: white;
+    padding: 14px 10px;
+    text-align: center;
+}
+
+td {
+    padding: 14px 10px;
+    text-align: center;
+    border-bottom: 1px solid #1f3150;
+}
+
+td:nth-child(2) {
+    text-align: left;
+    font-weight: bold;
+}
+
+tbody tr:hover {
+    background: #162641;
+}
+/* Football News */
+
+.news-section {
+    padding: 40px 30px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.news-section h2 {
+    font-size: 26px;
+    margin-bottom: 20px;
+}
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.news-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease;
+}
+
+.news-card:hover {
+    transform: translateY(-4px);
+}
+
+.news-image {
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 55px;
+    background: #f1f5f9;
+}
+.news-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.news-content {
+    padding: 18px;
+}
+
+.news-content span {
+    font-size: 13px;
+    font-weight: bold;
+    color: #2563eb;
+}
+
+.news-content h3 {
+    font-size: 18px;
+    margin: 8px 0;
+}
+
+.news-content p {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #555;
+}
+
+.news-content a {
+    display: inline-block;
+    margin-top: 10px;
+    color: #2563eb;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.news-content a:hover {
+    text-decoration: underline;
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+    .news-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.news-card {
+    background: #111c30;
+    border: 1px solid #1f3150;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.news-image {
+    height: 130px;
+    background: #162641;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+}
+
+.news-content {
+    padding: 20px;
+}
+
+.news-content span {
+    color: #087cff;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.news-content h3 {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.news-content p {
+    color: #b7c0d0;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.news-content a {
+    color: #087cff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.news-content a:hover {
+    text-decoration: underline;
+}
+/* Match Predictions */
+
+.predictions-section {
+    padding: 40px 30px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.predictions-section h2 {
+    font-size: 26px;
+    margin-bottom: 20px;
+}
+
+.prediction-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.prediction-card {
+    background: #111c30;
+    border: 1px solid #1f3150;
+    border-radius: 15px;
+    padding: 25px;
+    text-align: center;
+}
+
+.prediction-league {
+    color: #087cff;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.prediction-card h3 {
+    font-size: 19px;
+    margin-bottom: 20px;
+}
+
+.prediction-options {
+    display: flex;
+    gap: 10px;
+}
+
+.prediction-options button {
+    flex: 1;
+    padding: 12px 8px;
+    border: 1px solid #087cff;
+    background: transparent;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.prediction-options button:hover {
+    background: #087cff;
+}
+/* GoalHub Hero */
+
+.hero {
+    min-height: 420px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 30px;
+    background: linear-gradient(135deg, #0b1220, #162641);
+}
+
+.hero-content {
+    max-width: 750px;
+}
+
+.hero h1 {
+    font-size: 52px;
+    margin: 0 0 20px;
+}
+
+.hero p {
+    color: #b7c0d0;
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.hero-buttons a {
+    background: #087cff;
+    color: white;
+    text-decoration: none;
+    padding: 13px 22px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.hero-buttons a:hover {
+    background: #0566d6;
+}
+/* Mobile Responsive Design */
+
+@media (max-width: 768px) {
+
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px;
+    }
+
+    nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .hero {
+        min-height: 350px;
+        padding: 40px 20px;
+    }
+
+    .hero h1 {
+        font-size: 36px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .hero-buttons a {
+        width: 220px;
+    }
+
+    .matches-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .news-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .prediction-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .match {
+        gap: 10px;
+    }
+
+    .team {
+        font-size: 15px;
+    }
+
+    .score {
+        font-size: 22px;
+    }
+
+}
+/* Match Teams Layout */
+
+.teams {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+}
+
+.team {
+    flex: 1;
+    text-align: center;
+}
+
+.team:last-child {
+    text-align: center;
+}
+
+.team-logo {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+    margin-bottom: 8px;
+}
+
+.team h3 {
+    margin: 5px 0;
+    font-size: 18px;
+}
+
+.vs {
+    flex: 0 0 auto;
+    color: #aaa;
+    font-weight: bold;
+    font-size: 16px;
+}
+/* Live Match Layout */
+
+.live-match {
+    padding: 20px 0;
+    border-top: 1px solid #1f3150;
+}
+
+.live-teams {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+}
+
+.live-team {
+    flex: 1;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.live-team .team-logo {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+}
+
+.live-score {
+    font-size: 24px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.live-status {
+    text-align: center;
+    color: #e63946;
+    font-size: 13px;
+    font-weight: bold;
+    margin-top: 12px;
+}
+/* Live Match Layout */
+
+.live-match {
+    padding: 20px 0;
+    border-top: 1px solid #1f3150;
+}
+
+.live-teams {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+}
+
+.live-team {
+    flex: 1;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.live-team .team-logo {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+}
+
+.live-score {
+    font-size: 24px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.live-status {
+    text-align: center;
+    color: #e63946;
+    font-size: 13px;
+    font-weight: bold;
+    margin-top: 12px;
+}
+/* ================================
+   GoalHub Premier League Table
+================================ */
+
+.goalhub-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px;
+}
+
+.goalhub-table th {
+    background: #087cff;
+    color: white;
+    padding: 14px 10px;
+    text-align: center;
+}
+
+.goalhub-table td {
+    padding: 12px 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    text-align: center;
+}
+
+.goalhub-table tbody tr:hover {
+    background: rgba(255,255,255,0.05);
+}
+
+.goalhub-team {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-align: left !important;
+    font-weight: 600;
+}
+
+.table-team-logo {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+}
+
+.goalhub-table td:last-child {
+    color: #00d4ff;
+    font-weight: bold;
+}
+
+.sportscore-credit {
+    text-align: right;
+    margin-top: 10px;
+    font-size: 12px;
+    opacity: 0.7;
+}
+
+.sportscore-credit a {
+    color: #087cff;
+    text-decoration: none;
+}
+/* ================================
+   GoalHub Live Scores
+================================ */
+
+.live-matches {
+    display: grid;
+    gap: 20px;
+}
+
+.live-card {
+    background: #111827;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+.live-match {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.live-team {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 180px;
+}
+
+.live-team:last-child {
+    flex-direction: row-reverse;
+}
+
+.live-score {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 25px;
+}
+
+.live-status {
+    text-align: center;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.sportscore-credit {
+    text-align: right;
+    margin-top: 10px;
+    font-size: 12px;
+    opacity: 0.7;
+}
+
+.sportscore-credit a {
+    color: #087cff;
+    text-decoration: none;
+}
+/* ================================
+   GoalHub Match Days
+================================ */
+
+.match-day {
+    margin-bottom: 35px;
+}
+
+.match-day-title {
+    font-size: 22px;
+    margin-bottom: 15px;
+    color: white;
+}
+
+.match-day-games {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.match-card {
+    background: #111827;
+    border-radius: 12px;
+    padding: 14px;
+}
+
+.match-league {
+    color: #087cff;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.match-time {
+    text-align: center;
+    margin-bottom: 15px;
+    opacity: 0.8;
+}
+
+.match-card .teams {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.match-card .team {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 120px;
+}
+
+.match-card .team:last-child {
+    flex-direction: row-reverse;
+}
+
+.match-card .team-logo {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+
+.match-card .vs {
+    font-weight: bold;
+    color: #087cff;
+}
+/* ================================
+   GoalHub Live Scores - Improved
+================================ */
+
+.live-matches {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.live-card {
+    background: #111827;
+    border-radius: 12px;
+    padding: 14px;
+    border-left: 4px solid #ff3333;
+}
+
+.live-card .league {
+    color: #087cff;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.live-match {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.live-team {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+    flex: 1;
+}
+
+.live-team:last-child {
+    flex-direction: row-reverse;
+    text-align: right;
+}
+
+.live-team strong {
+    font-size: 14px;
+}
+
+.live-team .team-logo {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.live-score {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 22px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.live-status {
+    text-align: center;
+    margin-top: 10px;
+    color: #ff3333;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.live-status::before {
+    content: "● ";
+}
+@media (max-width: 700px) {
+
+    .live-matches {
+        grid-template-columns: 1fr;
+    }
+
+    .live-team strong {
+        font-size: 13px;
+    }
+
+    .live-score {
+        font-size: 20px;
+    }
+
+}
+/* ================================
+   GoalHub Football News
+================================ */
+
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.news-card {
+    background: #111827;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.news-image {
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 45px;
+    background: #0b1220;
+}
+
+.news-content {
+    padding: 15px;
+}
+
+.news-content span {
+    color: #087cff;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.news-content h3 {
+    font-size: 17px;
+    margin: 8px 0;
+}
+
+.news-content p {
+    font-size: 13px;
+    opacity: 0.75;
+    line-height: 1.5;
+}
+
+.news-content a {
+    display: inline-block;
+    margin-top: 10px;
+    color: #087cff;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.news-content a:hover {
+    text-decoration: underline;
+}
+
+/* Phone */
+@media (max-width: 700px) {
+
+    .news-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+.news-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+/* ================================
+   GoalHub Top Scorers
+================================ */
+
+.scorers-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.scorer-card {
+    background: #111827;
+    border-radius: 10px;
+    padding: 10px 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 55px;
+}
+
+.scorer-card img {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.scorer-position {
+    width: 22px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.scorer-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.scorer-info h3 {
+    margin: 0;
+    font-size: 14px;
+}
+
+.scorer-info p {
+    margin: 3px 0 0;
+    font-size: 11px;
+    opacity: 0.7;
+}
+
+.scorer-goals {
+    font-size: 14px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+/* ================================
+League Table + Top Scorers
+================================ */
+
+/* CENTRED LEAGUE INFORMATION */
+.league-info {
+display: grid;
+grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
+gap: 24px;
+
+width: 100%;
+max-width: 1250px;
+margin: 30px auto;
+padding: 20px;
+
+align-items: start;
+box-sizing: border-box;
+
+}
+
+/* PREMIER LEAGUE TABLE PANEL */
+.table-container {
+width: 100%;
+min-width: 0;
+padding: 18px;
+background: #111c30;
+border: 1px solid #1f3150;
+border-radius: 14px;
+overflow-x: auto;
+box-sizing: border-box;
+}
+
+/* TABLE HEADING */
+.table-heading {
+display: flex;
+justify-content: space-between;
+align-items: center;
+flex-wrap: wrap;
+gap: 12px;
+margin-bottom: 18px;
+}
+
+.table-heading h2 {
+margin: 0;
+font-size: 21px;
+}
+
+/* LEAGUE SELECTOR */
+#standings-league-select {
+padding: 10px 12px;
+background: #0b1220;
+color: white;
+border: 1px solid #29466d;
+border-radius: 8px;
+max-width: 100%;
+}
+
+/* LEAGUE TABLE */
+.goalhub-table {
+width: 100%;
+min-width: 600px;
+border-collapse: collapse;
+text-align: center;
+}
+
+.goalhub-table th {
+background: #172943;
+color: #ffffff;
+padding: 13px 10px;
+font-size: 13px;
+white-space: nowrap;
+}
+
+.goalhub-table td {
+padding: 12px 10px;
+border-bottom: 1px solid #24344c;
+font-size: 13px;
+white-space: nowrap;
+}
+
+.goalhub-table tbody tr:hover {
+background: #172943;
+}
+
+/* TOP SCORERS PANEL */
+.scorers-section {
+width: 100%;
+min-width: 0;
+padding: 18px;
+background: #111c30;
+border: 1px solid #1f3150;
+border-radius: 14px;
+box-sizing: border-box;
+}
+
+.scorers-section h2 {
+margin: 0 0 18px;
+font-size: 21px;
+line-height: 1.4;
+}
+
+/* SCORER LIST */
+.scorers-grid {
+display: flex;
+flex-direction: column;
+gap: 12px;
+}
+
+.scorer-card {
+display: flex;
+align-items: center;
+gap: 12px;
+padding: 12px;
+background: #0b1220;
+border: 1px solid #1f3150;
+border-radius: 10px;
+box-sizing: border-box;
+}
+
+.scorer-card img {
+width: 40px;
+height: 40px;
+object-fit: contain;
+flex-shrink: 0;
+}
+
+.scorer-info {
+flex: 1;
+min-width: 0;
+}
+
+/* DATA PROVIDER CREDIT */
+.sportscore-credit {
+margin-top: 15px;
+text-align: center;
+font-size: 12px;
+color: #9aabc4;
+}
+
+.sportscore-credit a {
+color: #4da3ff;
+text-decoration: none;
+}
+
+/* TABLE AND SCORERS STACK ON SMALL SCREENS */
+@media (max-width: 900px) {
+.league-info {
+grid-template-columns: minmax(0, 1fr);
+max-width: 700px;
+gap: 20px;
+padding: 14px;
+}
+}
+
+/* SMALL MOBILE SCREENS */
+@media (max-width: 480px) {
+.league-info {
+padding: 10px;
+margin: 15px auto;
+}
+
+.table-container,
+.scorers-section {
+    padding: 12px;
+}
+
+.table-heading h2,
+.scorers-section h2 {
+    font-size: 18px;
+}
+
+}
+
+
+.goalhub-table {
+width: 100%;
+min-width: 600px;
+border-collapse: collapse;
+}
+
+.scorers-section {
+width: 100%;
+min-width: 0;
+}
+
+@media (max-width: 900px) {
+.league-info {
+grid-template-columns: minmax(0, 1fr);
+}
+}
+
+.table-container,
+.scorers-section {
+background: #111c30;
+border-radius: 12px;
+padding: 20px;
+border: 1px solid #1f3150;
+min-width: 0;
+box-sizing: border-box;
+}
+
+.table-container {
+width: 100%;
+overflow-x: auto;
+}
+
+.scorers-section {
+width: 100%;
+}
+
+.scorers-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.scorer-card {
+    background: #111827;
+    border-radius: 10px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.scorer-card img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.scorer-info {
+    flex: 1;
+}
+
+.scorer-info h3 {
+    margin: 0;
+    font-size: 14px;
+}
+
+.scorer-info p {
+    margin: 4px 0 0;
+    font-size: 12px;
+    opacity: 0.7;
+}
+
+.scorer-goals {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Mobile */
+
+@media (max-width: 900px) {
+
+    .league-info {
+        grid-template-columns: 1fr;
+    }
+
+}
+/* GOALHUB NEWS LAYOUT FIX */
+
+.news-section {
+padding: 35px 25px;
+max-width: 1200px;
+margin: auto;
+}
+
+.news-grid {
+display: grid;
+grid-template-columns: repeat(3, minmax(0, 1fr));
+gap: 20px;
+align-items: stretch;
+}
+
+.news-card {
+background: #111c30;
+border: 1px solid #1f3150;
+border-radius: 12px;
+overflow: hidden;
+min-width: 0;
+display: flex;
+flex-direction: column;
+transition: transform 0.2s ease;
+}
+
+.news-card:hover {
+transform: translateY(-4px);
+}
+
+.news-image {
+width: 100%;
+height: 170px;
+background: #162641;
+display: flex;
+align-items: center;
+justify-content: center;
+overflow: hidden;
+flex-shrink: 0;
+}
+
+.news-image img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+display: block;
+}
+
+.news-content {
+padding: 16px;
+display: flex;
+flex-direction: column;
+flex: 1;
+}
+
+.news-content span {
+color: #087cff;
+font-size: 12px;
+font-weight: bold;
+}
+
+.news-content h3 {
+color: white;
+font-size: 16px;
+line-height: 1.5;
+margin: 10px 0;
+}
+
+.news-content p {
+color: #b7c0d0;
+font-size: 13px;
+line-height: 1.6;
+margin: 0 0 12px;
+}
+
+.news-content a {
+display: inline-block;
+margin-top: auto;
+padding-top: 10px;
+color: #087cff;
+font-size: 13px;
+font-weight: bold;
+text-decoration: none;
+}
+
+.news-content a:hover {
+text-decoration: underline;
+}
+
+/* TABLETS */
+
+@media (max-width: 900px) {
+.news-grid {
+grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+}
+
+/* MOBILE PHONES */
+
+@media (max-width: 600px) {
+.news-section {
+padding: 25px 15px;
+}
+
+.news-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+}
+
+.news-image {
+    height: 190px;
+}
+
+}
+/* =========================================
+GOALHUB - COMPACT PREMIER LEAGUE-INSPIRED FIXTURES
+========================================= */
+
+.matches-section {
+width: 100%;
+max-width: 1200px;
+margin: 0 auto;
+padding: 30px 24px;
+}
+
+.matches-section h2 {
+font-size: 26px;
+margin-bottom: 24px;
+}
+
+.match-day {
+margin-bottom: 28px;
+}
+
+.match-day-title {
+font-size: 18px;
+font-weight: 700;
+margin: 0 0 12px;
+padding: 12px 15px;
+background: #162641;
+border-left: 4px solid #087cff;
+border-radius: 5px;
+}
+
+.match-day-games {
+display: grid;
+grid-template-columns: repeat(2, minmax(0, 1fr));
+gap: 12px;
+}
+
+.match-card {
+min-width: 0;
+padding: 12px 14px;
+background: #111c30;
+border: 1px solid #253650;
+border-radius: 8px;
+text-align: left;
+transition: border-color 0.2s ease;
+}
+
+.match-card:hover {
+border-color: #087cff;
+}
+
+.match-league {
+margin-bottom: 8px;
+color: #8fa5c4;
+font-size: 10px;
+font-weight: 700;
+text-transform: uppercase;
+letter-spacing: 0.6px;
+}
+
+.match-time {
+display: table;
+margin: 0 auto 10px;
+padding: 5px 10px;
+background: #1c2b43;
+border: 1px solid #30435e;
+border-radius: 4px;
+color: #ffffff;
+font-size: 12px;
+font-weight: 700;
+text-align: center;
+}
+
+.match-card .teams {
+display: grid;
+grid-template-columns: minmax(0, 1fr) 32px minmax(0, 1fr);
+align-items: center;
+gap: 8px;
+width: 100%;
+}
+
+.match-card .team {
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: flex-start;
+gap: 7px;
+min-width: 0;
+flex: initial;
+text-align: left;
+}
+
+.match-card .team:last-child {
+flex-direction: row;
+text-align: left;
+}
+
+.match-card .team-logo {
+display: block;
+width: 25px;
+height: 25px;
+margin: 0;
+object-fit: contain;
+flex: 0 0 25px;
+}
+
+.match-card .team-name {
+display: block;
+min-width: 0;
+font-size: 12px;
+line-height: 1.3;
+font-weight: 600;
+overflow-wrap: break-word;
+word-break: normal;
+}
+
+.match-card .vs {
+display: flex;
+align-items: center;
+justify-content: center;
+width: 32px;
+min-width: 32px;
+padding: 5px 2px;
+background: #1c2b43;
+border: 1px solid #30435e;
+border-radius: 4px;
+color: #b7c0d0;
+font-size: 10px;
+font-weight: 700;
+white-space: nowrap;
+}
+
+/* COMPACT LEAGUE TABLE */
+
+.goalhub-table {
+width: 100%;
+min-width: 560px;
+border-collapse: collapse;
+}
+
+.goalhub-table th {
+padding: 9px 7px;
+background: #162641;
+color: #b7c0d0;
+font-size: 11px;
+text-align: center;
+}
+
+.goalhub-table td {
+padding: 9px 7px;
+border-bottom: 1px solid #253650;
+font-size: 12px;
+text-align: center;
+vertical-align: middle;
+}
+
+.goalhub-table .goalhub-team {
+display: flex;
+align-items: center;
+gap: 8px;
+min-width: 0;
+text-align: left;
+font-weight: 600;
+}
+
+.goalhub-table .table-team-logo {
+display: block;
+width: 22px;
+height: 22px;
+flex: 0 0 22px;
+object-fit: contain;
+}
+
+.goalhub-table tbody tr:hover {
+background: #162641;
+}
+
+/* TABLETS */
+
+@media (max-width: 850px) {
+.match-day-games {
+grid-template-columns: 1fr;
+}
+
+.matches-section {
+    padding: 25px 18px;
+}
+
+}
+
+/* MOBILE PHONES */
+
+@media (max-width: 480px) {
+.matches-section {
+padding: 22px 12px;
+}
+
+.matches-section h2 {
+    font-size: 22px;
+}
+
+.match-day-title {
+    font-size: 16px;
+    padding: 10px 12px;
+}
+
+.match-card {
+    padding: 11px 9px;
+}
+
+.match-card .teams {
+    grid-template-columns: minmax(0, 1fr) 30px minmax(0, 1fr);
+    gap: 5px;
+}
+
+.match-card .team {
+    gap: 5px;
+}
+
+.match-card .team-logo {
+    width: 21px;
+    height: 21px;
+    flex-basis: 21px;
+}
+
+.match-card .team-name {
+    font-size: 11px;
+}
+
+.match-card .vs {
+    width: 30px;
+    min-width: 30px;
+    font-size: 9px;
+}
+
+}
+/* ==================================
+GOALHUB COMPACT FIXTURES
+Matches the current JavaScript HTML
+================================== */
+
+#matches-list {
+width: 100%;
+max-width: 1100px;
+margin: 0 auto;
+}
+
+#matches-list .match-day {
+margin-bottom: 26px;
+}
+
+#matches-list .match-day-title {
+margin: 0 0 12px;
+padding: 12px 15px;
+background: #162641;
+border-left: 4px solid #087cff;
+border-radius: 5px;
+font-size: 17px;
+}
+
+#matches-list .match-day-games {
+display: grid;
+grid-template-columns: repeat(2, minmax(0, 1fr));
+gap: 10px;
+}
+
+#matches-list .match-card {
+min-width: 0;
+padding: 12px;
+background: #111c30;
+border: 1px solid #253650;
+border-radius: 8px;
+text-align: left;
+}
+
+#matches-list .match-card-header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+gap: 8px;
+margin-bottom: 12px;
+}
+
+#matches-list .match-league {
+margin: 0;
+color: #a9b9d0;
+font-size: 10px;
+font-weight: 700;
+}
+
+#matches-list .match-time {
+display: inline-block;
+margin: 0;
+padding: 5px 7px;
+background: #20314b;
+border-radius: 4px;
+color: #fff;
+font-size: 11px;
+font-weight: 700;
+white-space: nowrap;
+}
+
+#matches-list .teams {
+display: grid;
+grid-template-columns: minmax(0, 1fr) 30px minmax(0, 1fr);
+align-items: center;
+gap: 6px;
+}
+
+#matches-list .team {
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+gap: 7px;
+min-width: 0;
+text-align: center;
+}
+
+#matches-list .team:last-child {
+flex-direction: column;
+text-align: center;
+}
+
+#matches-list .team-logo {
+display: block;
+width: 28px;
+height: 28px;
+margin: 0;
+object-fit: contain;
+flex-shrink: 0;
+}
+
+#matches-list .team h3 {
+width: 100%;
+min-width: 0;
+margin: 0;
+color: #fff;
+font-size: 12px;
+font-weight: 600;
+line-height: 1.35;
+overflow-wrap: anywhere;
+}
+
+#matches-list .vs {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+width: 30px;
+min-width: 30px;
+padding: 5px 2px;
+background: #20314b;
+border: 1px solid #344761;
+border-radius: 4px;
+color: #b7c0d0;
+font-size: 9px;
+font-weight: 700;
+}
+
+/* Tablet and mobile */
+
+@media (max-width: 700px) {
+#matches-list .match-day-games {
+grid-template-columns: 1fr;
+}
+}
+
+@media (max-width: 400px) {
+#matches-list .match-card {
+padding: 10px 8px;
+}
+
+#matches-list .team-logo {
+    width: 24px;
+    height: 24px;
+}
+
+#matches-list .team h3 {
+    font-size: 11px;
+}
+
+}
+/* ==============================
+   GOALHUB NEWS - COMPACT DESIGN
+   ============================== */
+
+#news-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    align-items: stretch;
+}
+
+#news-list .news-card {
+    min-width: 0;
+    overflow: hidden;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+#news-list .news-image {
+    height: 150px;
+    min-height: 150px;
+    overflow: hidden;
+}
+
+#news-list .news-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+#news-list .news-content {
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+#news-list .news-content h3 {
+    font-size: 15px;
+    line-height: 1.4;
+    margin: 8px 0;
+}
+
+#news-list .news-content p {
+    font-size: 13px;
+    line-height: 1.5;
+    margin: 0 0 12px;
+}
+
+#news-list .news-content a {
+    margin-top: auto;
+    font-size: 13px;
+}
+
+@media (max-width: 900px) {
+    #news-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 550px) {
+    #news-list {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    #news-list .news-image {
+        height: 180px;
+        min-height: 180px;
+    }
+}
+/* Premier League table Show More button */
+
+#table-toggle {
+    display: block;
+    margin: 15px auto;
+    padding: 10px 22px;
+    background: #087cff;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#table-toggle:hover {
+    background: #0066d6;
+}
+/* Premier League table Show More button */
+
+#table-toggle {
+    display: block;
+    margin: 15px auto;
+    padding: 10px 22px;
+    background: #087cff;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#table-toggle:hover {
+    background: #0066d6;
+}
+/* =======================================
+   GOALHUB UPCOMING MATCHES
+   Professional responsive layout
+======================================= */
+
+#matches-list {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Matchday section */
+
+#matches-list .match-day {
+    margin-bottom: 28px;
+}
+
+#matches-list .match-day-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #263750;
+}
+
+#matches-list .match-day-title {
+    margin: 0;
+    font-size: 19px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+#matches-list .match-count {
+    flex-shrink: 0;
+    color: #9db0ca;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.7px;
+}
+
+/* Two-column layout on wider screens */
+
+#matches-list .match-day-games {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+/* Individual match card */
+
+#matches-list .match-card {
+    min-width: 0;
+    padding: 15px;
+    background: #111c30;
+    border: 1px solid #23334c;
+    border-radius: 12px;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+#matches-list .match-card:hover {
+    border-color: #087cff;
+    transform: translateY(-2px);
+}
+
+/* Card header */
+
+#matches-list .match-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #263750;
+}
+
+#matches-list .match-league {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: #aebed4;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+#matches-list .league-dot {
+    width: 7px;
+    height: 7px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: #087cff;
+}
+
+#matches-list .match-time {
+    flex-shrink: 0;
+    padding: 5px 9px;
+    color: #ffffff;
+    background: #20314a;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* Teams */
+
+#matches-list .match-card-teams {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 30px minmax(0, 1fr);
+    align-items: center;
+    gap: 8px;
+    padding: 18px 0;
+}
+
+#matches-list .match-team {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    text-align: center;
+}
+
+#matches-list .match-team .team-logo {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+}
+
+#matches-list .team-name {
+    width: 100%;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+}
+
+#matches-list .match-vs {
+    color: #8295af;
+    font-size: 11px;
+    font-weight: 800;
+    text-align: center;
+}
+
+/* Card footer */
+
+#matches-list .match-card-footer {
+    padding-top: 10px;
+    border-top: 1px solid #263750;
+    color: #8194ae;
+    font-size: 10px;
+    text-align: center;
+}
+
+/* Loading and error messages */
+
+#matches-list .matches-message {
+    padding: 20px;
+    color: #aebed4;
+    text-align: center;
+}
+
+/* Tablet */
+
+@media (max-width: 800px) {
+    #matches-list .match-day-games {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    #matches-list .match-card {
+        padding: 12px;
+    }
+
+    #matches-list .match-team .team-logo {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+    #matches-list .match-day {
+        margin-bottom: 22px;
+    }
+
+    #matches-list .match-day-heading {
+        margin-bottom: 10px;
+    }
+
+    #matches-list .match-day-title {
+        font-size: 16px;
+    }
+
+    #matches-list .match-day-games {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 10px;
+    }
+
+    #matches-list .match-card {
+        padding: 12px 14px;
+        border-radius: 10px;
+    }
+
+    #matches-list .match-card-teams {
+        grid-template-columns: minmax(0, 1fr) 28px minmax(0, 1fr);
+        padding: 14px 0;
+    }
+
+    #matches-list .match-team .team-logo {
+        width: 38px;
+        height: 38px;
+    }
+
+    #matches-list .team-name {
+        font-size: 13px;
+    }
+
+    #matches-list .match-card-footer {
+        font-size: 9px;
+    }
+}
+/* ========================================
+   GOALHUB LIVE SCORES
+======================================== */
+
+#live-matches {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* Live summary heading */
+
+#live-matches .live-summary {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding: 13px 16px;
+    background: #111c30;
+    border: 1px solid #263750;
+    border-radius: 10px;
+}
+
+#live-matches .live-summary strong {
+    color: #ffffff;
+    font-size: 14px;
+    letter-spacing: 0.8px;
+}
+
+#live-matches .live-summary > span:last-child {
+    margin-left: auto;
+    color: #aebed4;
+    font-size: 12px;
+}
+
+/* Live pulse indicator */
+
+#live-matches .live-pulse {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: #ff4141;
+    box-shadow: 0 0 0 4px rgba(255, 65, 65, 0.12);
+    animation: goalhub-live-pulse 1.5s infinite;
+}
+
+@keyframes goalhub-live-pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.45;
+    }
+}
+
+/* League group */
+
+#live-matches .live-league-group {
+    margin-bottom: 24px;
+}
+
+#live-matches .live-league-heading {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #263750;
+}
+
+#live-matches .live-league-icon {
+    font-size: 17px;
+}
+
+#live-matches .live-league-heading h3 {
+    margin: 0;
+    color: #dce8fa;
+    font-size: 15px;
+}
+
+/* Match list */
+
+#live-matches .live-league-matches {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+/* Match card */
+
+#live-matches .live-card {
+    min-width: 0;
+    padding: 15px;
+    background: #111c30;
+    border: 1px solid #23334c;
+    border-radius: 12px;
+    transition: border-color 0.2s ease;
+}
+
+#live-matches .live-card:hover {
+    border-color: #087cff;
+}
+
+/* Card top row */
+
+#live-matches .live-card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #263750;
+}
+
+#live-matches .live-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #ff6666;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.7px;
+}
+
+#live-matches .live-status {
+    color: #aebed4;
+    font-size: 11px;
+    text-align: right;
+}
+
+/* Teams and score */
+
+#live-matches .live-match {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: center;
+    gap: 10px;
+    padding: 18px 0 8px;
+}
+
+#live-matches .live-team {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    text-align: center;
+}
+
+#live-matches .live-team .team-logo {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+}
+
+#live-matches .live-team strong {
+    width: 100%;
+    color: #ffffff;
+    font-size: 12px;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+}
+
+#live-matches .live-score {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: #ffffff;
+    font-size: 27px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+#live-matches .score-divider {
+    color: #6f86a5;
+    font-size: 22px;
+}
+
+/* Empty and error states */
+
+#live-matches .live-empty {
+    padding: 30px 18px;
+    background: #111c30;
+    border: 1px solid #23334c;
+    border-radius: 12px;
+    text-align: center;
+}
+
+#live-matches .live-empty-icon {
+    margin-bottom: 10px;
+    font-size: 32px;
+}
+
+#live-matches .live-empty h3 {
+    margin: 0 0 8px;
+    color: #ffffff;
+    font-size: 18px;
+}
+
+#live-matches .live-empty p {
+    margin: 0 0 12px;
+    color: #aebed4;
+    font-size: 13px;
+}
+
+#live-matches .live-refresh-note {
+    color: #8295af;
+    font-size: 11px;
+}
+
+#live-matches #retry-live-scores {
+    padding: 9px 16px;
+    color: #ffffff;
+    background: #087cff;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+/* Tablet */
+
+@media (max-width: 800px) {
+    #live-matches .live-league-matches {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    #live-matches .live-card {
+        padding: 12px;
+    }
+
+    #live-matches .live-team .team-logo {
+        width: 36px;
+        height: 36px;
+    }
+
+    #live-matches .live-score {
+        font-size: 23px;
+    }
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+    #live-matches .live-league-matches {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 10px;
+    }
+
+    #live-matches .live-card {
+        padding: 12px 14px;
+    }
+
+    #live-matches .live-match {
+        grid-template-columns: minmax(0, 1fr) 75px minmax(0, 1fr);
+        gap: 8px;
+        padding-top: 14px;
+    }
+
+    #live-matches .live-team .team-logo {
+        width: 36px;
+        height: 36px;
+    }
+
+    #live-matches .live-team strong {
+        font-size: 12px;
+    }
+
+    #live-matches .live-score {
+        gap: 6px;
+        font-size: 25px;
+    }
+
+    #live-matches .live-status {
+        font-size: 10px;
+    }
+}
+/* ==================================
+   GOALHUB MATCH PREDICTIONS
+================================== */
+
+.prediction-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.prediction-options button {
+    flex: 1;
+    min-width: 75px;
+    padding: 10px 12px;
+    background: #111c30;
+    color: white;
+    border: 1px solid #30425e;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.prediction-options button:hover {
+    border-color: #087cff;
+}
+
+.prediction-options button.selected-prediction {
+    background: #087cff;
+    color: white;
+    border-color: #087cff;
+    box-shadow: 0 0 0 2px rgba(8, 124, 255, 0.2);
+}
+
+#submit-predictions {
+    display: block;
+    width: 100%;
+    margin-top: 18px;
+    padding: 13px 16px;
+    background: #087cff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+#submit-predictions:hover {
+    background: #0066d6;
+}
+
+#prediction-count {
+    margin-top: 12px;
+    color: #aebed4;
+    font-size: 13px;
+}
+
+#prediction-message {
+    margin-top: 10px;
+    color: #79b5ff;
+    font-size: 13px;
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 600px) {
+
+    .prediction-options {
+        gap: 6px;
+    }
+
+    .prediction-options button {
+        min-width: 0;
+        padding: 11px 6px;
+        font-size: 12px;
+    }
+
+    #submit-predictions {
+        min-height: 44px;
+    }
+}
+/* =====================================
+GOALHUB MATCH CENTRE
+===================================== */
+
+.match-centre {
+max-width: 1200px;
+margin: 50px auto;
+padding: 25px;
+color: #f8fafc;
+font-family: Arial, sans-serif;
+}
+
+.match-centre * {
+box-sizing: border-box;
+}
+
+.match-centre .section-heading {
+margin-bottom: 28px;
+}
+
+.match-centre .section-heading h2 {
+margin: 10px 0;
+font-size: 32px;
+color: #ffffff;
+}
+
+.match-centre .section-heading p {
+color: #94a3b8;
+line-height: 1.6;
+}
+
+.match-centre .section-tag {
+color: #38bdf8;
+font-size: 11px;
+font-weight: 800;
+letter-spacing: 2px;
+text-transform: uppercase;
+}
+
+/* Match selector */
+
+.match-centre-selector {
+display: flex;
+flex-wrap: wrap;
+gap: 12px;
+margin-bottom: 22px;
+}
+
+.match-centre .match-select {
+background: #111c30;
+color: #cbd5e1;
+border: 1px solid #263650;
+border-radius: 10px;
+padding: 13px 18px;
+font-size: 14px;
+font-weight: 700;
+cursor: pointer;
+transition: 0.2s ease;
+}
+
+.match-centre .match-select:hover,
+.match-centre .match-select.active {
+background: #087cff;
+color: #ffffff;
+border-color: #087cff;
+}
+
+/* Main match card */
+
+.match-centre .match-overview {
+background: linear-gradient(135deg, #172943, #0e192b);
+border: 1px solid #263b59;
+border-radius: 20px;
+padding: 25px;
+margin-bottom: 24px;
+box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+}
+
+.match-overview-top {
+display: flex;
+justify-content: space-between;
+align-items: center;
+gap: 12px;
+flex-wrap: wrap;
+padding-bottom: 18px;
+border-bottom: 1px solid #2a3c55;
+}
+
+.match-competition {
+color: #cbd5e1;
+font-size: 11px;
+font-weight: 800;
+letter-spacing: 1.5px;
+}
+
+.match-status {
+background: rgba(8, 124, 255, 0.15);
+color: #60a5fa;
+padding: 7px 10px;
+border-radius: 20px;
+font-size: 10px;
+font-weight: 800;
+}
+
+.match-teams {
+display: grid;
+grid-template-columns: 1fr 0.7fr 1fr;
+align-items: center;
+gap: 15px;
+padding: 30px 0;
+text-align: center;
+}
+
+.match-team-badge {
+display: flex;
+align-items: center;
+justify-content: center;
+width: 65px;
+height: 65px;
+margin: 0 auto 14px;
+border-radius: 50%;
+background: #203956;
+border: 1px solid #365474;
+color: #ffffff;
+font-size: 16px;
+font-weight: 900;
+}
+
+.match-team h3 {
+margin: 0;
+font-size: 20px;
+overflow-wrap: anywhere;
+}
+
+.match-team p {
+color: #94a3b8;
+font-size: 12px;
+}
+
+.match-score-area .versus {
+display: inline-block;
+padding: 10px 16px;
+border-radius: 9px;
+background: #087cff;
+color: #ffffff;
+font-weight: 900;
+font-size: 15px;
+}
+
+.match-score-area p {
+color: #cbd5e1;
+font-size: 12px;
+margin-top: 12px;
+line-height: 1.5;
+}
+
+.stadium-information {
+display: flex;
+align-items: center;
+gap: 13px;
+padding: 15px;
+background: rgba(4, 12, 25, 0.35);
+border-radius: 12px;
+}
+
+.stadium-information > span {
+font-size: 25px;
+}
+
+.stadium-information small {
+color: #60a5fa;
+font-size: 10px;
+font-weight: 800;
+letter-spacing: 1.5px;
+}
+
+.stadium-information p {
+margin: 5px 0 0;
+font-size: 14px;
+color: #e2e8f0;
+}
+
+/* General information panels */
+
+.match-centre .match-centre-panel {
+background: #111c30;
+border: 1px solid #22334c;
+border-radius: 17px;
+padding: 24px;
+margin-bottom: 22px;
+}
+
+.match-centre .panel-heading {
+display: flex;
+justify-content: space-between;
+align-items: center;
+gap: 15px;
+flex-wrap: wrap;
+margin-bottom: 22px;
+}
+
+.match-centre .panel-heading h3 {
+margin: 8px 0 0;
+color: #ffffff;
+font-size: 21px;
+}
+
+/* League comparison */
+
+.standings-comparison {
+display: grid;
+grid-template-columns: 1fr auto 1fr;
+gap: 20px;
+align-items: stretch;
+}
+
+.standings-team {
+background: #0b1628;
+border: 1px solid #263750;
+border-radius: 13px;
+padding: 18px;
+min-width: 0;
+}
+
+.standings-team h4,
+.recent-form-team h4,
+.lineup-team h4 {
+margin: 0 0 18px;
+font-size: 17px;
+color: #ffffff;
+}
+
+.standing-position {
+display: flex;
+justify-content: space-between;
+align-items: center;
+gap: 10px;
+padding: 12px 0;
+border-bottom: 1px solid #203047;
+}
+
+.standing-position:last-child {
+border-bottom: none;
+}
+
+.standing-position span {
+color: #94a3b8;
+font-size: 13px;
+}
+
+.standing-position strong {
+color: #60a5fa;
+font-size: 15px;
+}
+
+.standings-divider {
+display: flex;
+align-items: center;
+color: #64748b;
+font-weight: 900;
+font-size: 12px;
+}
+
+.data-note {
+color: #94a3b8;
+font-size: 12px;
+line-height: 1.6;
+margin: 18px 0 0;
+}
+
+/* Recent results */
+
+.recent-form-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 20px;
+}
+
+.recent-form-team {
+min-width: 0;
+background: #0b1628;
+border: 1px solid #263750;
+border-radius: 13px;
+padding: 18px;
+}
+
+.recent-results {
+display: flex;
+flex-direction: column;
+gap: 10px;
+}
+
+.recent-results p {
+color: #94a3b8;
+font-size: 13px;
+line-height: 1.6;
+}
+
+.recent-result {
+display: flex;
+justify-content: space-between;
+align-items: center;
+gap: 10px;
+padding: 12px;
+background: #142238;
+border-radius: 9px;
+font-size: 12px;
+}
+
+.recent-result .result-score {
+color: #ffffff;
+font-weight: 800;
+white-space: nowrap;
+}
+
+.result-badge {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+min-width: 25px;
+height: 25px;
+border-radius: 6px;
+font-weight: 900;
+font-size: 11px;
+}
+
+.result-win {
+background: rgba(34, 197, 94, 0.15);
+color: #4ade80;
+}
+
+.result-draw {
+background: rgba(250, 204, 21, 0.15);
+color: #facc15;
+}
+
+.result-loss {
+background: rgba(248, 113, 113, 0.15);
+color: #f87171;
+}
+
+/* Head-to-head */
+
+.head-to-head-summary {
+display: grid;
+grid-template-columns: 1fr 1fr 1fr;
+gap: 12px;
+}
+
+.h2h-stat {
+background: #0b1628;
+border: 1px solid #263750;
+border-radius: 12px;
+padding: 20px 10px;
+text-align: center;
+min-width: 0;
+}
+
+.h2h-stat strong {
+display: block;
+font-size: 30px;
+color: #60a5fa;
+margin-bottom: 8px;
+}
+
+.h2h-stat span {
+color: #cbd5e1;
+font-size: 12px;
+overflow-wrap: anywhere;
+}
+
+.h2h-results {
+display: flex;
+flex-direction: column;
+gap: 10px;
+margin-top: 20px;
+}
+
+.h2h-results p {
+color: #94a3b8;
+font-size: 13px;
+line-height: 1.6;
+}
+
+.h2h-result {
+display: grid;
+grid-template-columns: 1fr auto 1fr;
+align-items: center;
+gap: 12px;
+padding: 14px;
+border-radius: 10px;
+background: #0b1628;
+text-align: center;
+font-size: 12px;
+}
+
+.h2h-result strong {
+color: #ffffff;
+white-space: nowrap;
+}
+
+/* Line-ups */
+
+.match-centre .lineup-status {
+background: rgba(250, 204, 21, 0.12);
+color: #facc15;
+border-radius: 20px;
+padding: 8px 11px;
+font-size: 11px;
+font-weight: 800;
+}
+
+.lineups-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 20px;
+}
+
+.lineup-team {
+min-width: 0;
+background: #0b1628;
+border: 1px solid #263750;
+border-radius: 13px;
+padding: 20px;
+}
+
+.formation-label {
+display: inline-block;
+margin-bottom: 18px;
+background: rgba(8, 124, 255, 0.15);
+color: #60a5fa;
+padding: 8px 11px;
+border-radius: 8px;
+font-size: 12px;
+font-weight: 700;
+}
+
+.lineup-players {
+color: #94a3b8;
+font-size: 13px;
+line-height: 1.8;
+}
+
+/* Keyboard accessibility */
+
+.match-centre button:focus-visible {
+outline: 2px solid #38bdf8;
+outline-offset: 3px;
+}
+
+/* Responsive layout */
+
+@media (max-width: 700px) {
+
+.match-centre {
+    margin: 25px auto;
+    padding: 12px;
+}
+
+.match-centre .section-heading h2 {
+    font-size: 26px;
+}
+
+.match-centre .match-overview,
+.match-centre .match-centre-panel {
+    padding: 17px;
+    border-radius: 14px;
+}
+
+.match-teams {
+    grid-template-columns: 1fr 0.55fr 1fr;
+    gap: 8px;
+    padding: 24px 0;
+}
+
+.match-team-badge {
+    width: 48px;
+    height: 48px;
+    font-size: 12px;
+}
+
+.match-team h3 {
+    font-size: 15px;
+}
+
+.match-team p {
+    font-size: 11px;
+}
+
+.match-score-area .versus {
+    padding: 8px 10px;
+    font-size: 12px;
+}
+
+.match-score-area p {
+    font-size: 10px;
+    overflow-wrap: anywhere;
+}
+
+.match-centre-selector {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.match-centre .match-select {
+    width: 100%;
+    text-align: left;
+}
+
+.standings-comparison {
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+
+.standings-divider {
+    justify-content: center;
+}
+
+.recent-form-grid,
+.lineups-grid {
+    grid-template-columns: 1fr;
+}
+
+.head-to-head-summary {
+    gap: 7px;
+}
+
+.h2h-stat {
+    padding: 15px 5px;
+}
+
+.h2h-stat strong {
+    font-size: 24px;
+}
+
+.h2h-stat span {
+    font-size: 10px;
+}
+
+.match-centre .panel-heading h3 {
+    font-size: 18px;
+}
+
+.stadium-information p {
+    font-size: 13px;
+}
+
+.h2h-result {
+    gap: 7px;
+    padding: 12px 8px;
+    font-size: 11px;
+}
+
+}
+/* =========================================
+   GOALHUB UPCOMING MATCHES - HEADER & SELECTOR
+========================================= */
+
+#matches .upcoming-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 28px;
+    padding: 22px;
+    background: linear-gradient(135deg, #111c30, #162641);
+    border: 1px solid #253650;
+    border-radius: 14px;
+}
+
+#matches .upcoming-heading h2 {
+    margin: 8px 0;
+    color: #ffffff;
+    font-size: 26px;
+    line-height: 1.3;
+}
+
+#matches .upcoming-heading .section-tag {
+    color: #087cff;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+#matches .upcoming-subtitle {
+    margin: 8px 0 0;
+    color: #aebed4;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+#matches .upcoming-league-filter {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 200px;
+}
+
+#matches .upcoming-league-filter label {
+    color: #b7c0d0;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+#matches #upcoming-league-select {
+    width: 100%;
+    padding: 12px 36px 12px 12px;
+    background: #0b1220;
+    color: #ffffff;
+    border: 1px solid #30435e;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    outline: none;
+}
+
+#matches #upcoming-league-select:focus {
+    border-color: #087cff;
+    box-shadow: 0 0 0 3px rgba(8, 124, 255, 0.15);
+}
+
+#matches #upcoming-league-select option {
+    background: #111c30;
+    color: #ffffff;
+}
+
+/* Keep match cards compact and consistent */
+
+#matches-list .match-card {
+    box-sizing: border-box;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+}
+
+#matches-list .match-card-teams {
+    min-height: 100px;
+}
+
+#matches-list .match-team {
+    overflow: hidden;
+}
+
+#matches-list .match-team .team-logo {
+    flex-shrink: 0;
+}
+
+#matches-list .match-card-footer {
+    line-height: 1.5;
+}
+
+/* Tablet and mobile layout */
+
+@media (max-width: 700px) {
+    #matches .upcoming-heading {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 18px;
+        padding: 18px;
+    }
+
+    #matches .upcoming-heading h2 {
+        font-size: 22px;
+    }
+
+    #matches .upcoming-league-filter {
+        min-width: 0;
+        width: 100%;
+    }
+}
+
+@media (max-width: 400px) {
+    #matches .upcoming-heading {
+        padding: 14px;
+    }
+
+    #matches .upcoming-heading h2 {
+        font-size: 20px;
+    }
+}
+/* =========================================
+GOALHUB — GLOBAL DESIGN UPGRADE
+========================================= */
+
+/* Smooth scrolling between website sections */
+html {
+scroll-behavior: smooth;
+}
+
+/* Consistent page background and text */
+body {
+background: #0b1220;
+color: #f1f5f9;
+line-height: 1.5;
+}
+
+/* Consistent section spacing */
+.live-section,
+.matches-section,
+.table-section,
+.news-section,
+.predictions-section {
+width: 100%;
+max-width: 1250px;
+margin: 0 auto;
+padding: 38px 24px;
+}
+
+/* Consistent section headings */
+.live-section h2,
+.matches-section h2,
+.table-section h2,
+.news-section h2,
+.predictions-section h2 {
+color: #ffffff;
+font-size: 26px;
+font-weight: 800;
+line-height: 1.3;
+}
+
+/* Blue highlight for section headings */
+.live-section h2,
+.table-section h2,
+.news-section h2,
+.predictions-section h2 {
+padding-left: 12px;
+border-left: 4px solid #087cff;
+}
+
+/* Consistent interactive transitions */
+a,
+button,
+.match-card,
+.news-card,
+.prediction-card {
+transition:
+color 0.2s ease,
+background-color 0.2s ease,
+border-color 0.2s ease,
+transform 0.2s ease;
+}
+
+/* Prevent long text from breaking the layout */
+img {
+max-width: 100%;
+}
+
+/* Better keyboard accessibility */
+a:focus-visible,
+button:focus-visible,
+select:focus-visible {
+outline: 2px solid #38bdf8;
+outline-offset: 3px;
+}
+
+/* Mobile spacing */
+@media (max-width: 600px) {
+.live-section,
+.matches-section,
+.table-section,
+.news-section,
+.predictions-section {
+padding: 26px 14px;
+}
+
+.live-section h2,
+.matches-section h2,
+.table-section h2,
+.news-section h2,
+.predictions-section h2 {
+    font-size: 22px;
+}
+
+}
+/* =========================================
+GOALHUB LEAGUE TABLE — CLEAN FINAL OVERRIDE
+========================================= */
+
+/* League table and top scorers layout */
+.league-info {
+display: grid;
+grid-template-columns: minmax(0, 2fr) minmax(260px, 1fr);
+gap: 24px;
+width: 100%;
+max-width: 1250px;
+margin: 30px auto;
+padding: 20px;
+align-items: start;
+}
+
+/* Table panel */
+.table-container {
+width: 100%;
+min-width: 0;
+padding: 16px;
+background: #111c30;
+border: 1px solid #1f3150;
+border-radius: 12px;
+overflow-x: auto;
+}
+
+/* Table heading and league selector */
+.table-heading {
+display: flex;
+justify-content: space-between;
+align-items: center;
+flex-wrap: wrap;
+gap: 12px;
+margin-bottom: 18px;
+}
+
+.table-heading h2 {
+margin: 0;
+font-size: 21px;
+line-height: 1.4;
+}
+
+#standings-league-select {
+max-width: 100%;
+padding: 10px 12px;
+background: #0b1220;
+color: #ffffff;
+border: 1px solid #29466d;
+border-radius: 8px;
+font-size: 13px;
+}
+
+/* League table */
+.goalhub-table {
+width: 100%;
+min-width: 560px;
+border-collapse: collapse;
+table-layout: auto;
+}
+
+/* Column headings */
+.goalhub-table thead th {
+padding: 11px 8px;
+background: #172943;
+color: #b7c8df;
+border-bottom: 1px solid #30435e;
+font-size: 12px;
+font-weight: 700;
+text-align: center;
+white-space: nowrap;
+}
+
+/* Table cells */
+.goalhub-table tbody td {
+padding: 10px 8px;
+border-bottom: 1px solid #24344c;
+color: #e2e8f0;
+font-size: 12px;
+text-align: center;
+vertical-align: middle;
+white-space: nowrap;
+}
+
+/* Team name and logo */
+.goalhub-table tbody td.goalhub-team {
+display: flex;
+align-items: center;
+gap: 8px;
+min-width: 150px;
+text-align: left;
+font-weight: 600;
+}
+
+.goalhub-table .table-team-logo {
+display: block;
+width: 24px;
+height: 24px;
+flex: 0 0 24px;
+object-fit: contain;
+}
+
+/* Highlight points */
+.goalhub-table tbody td:last-child {
+color: #00d4ff;
+font-weight: 800;
+}
+
+/* Row hover */
+.goalhub-table tbody tr:hover {
+background: #172943;
+}
+
+/* Data provider credit */
+.sportscore-credit {
+margin-top: 14px;
+color: #9aabc4;
+font-size: 12px;
+text-align: center;
+}
+
+.sportscore-credit a {
+color: #4da3ff;
+text-decoration: none;
+}
+
+/* Show More button */
+#table-toggle {
+display: block;
+margin: 15px auto 0;
+padding: 10px 22px;
+background: #087cff;
+color: #ffffff;
+border: none;
+border-radius: 7px;
+font-size: 14px;
+font-weight: 700;
+cursor: pointer;
+}
+
+#table-toggle:hover {
+background: #0066d6;
+}
+
+/* Top scorers panel */
+.scorers-section {
+width: 100%;
+min-width: 0;
+padding: 16px;
+background: #111c30;
+border: 1px solid #1f3150;
+border-radius: 12px;
+}
+
+.scorers-section h2 {
+margin: 0 0 18px;
+font-size: 21px;
+line-height: 1.4;
+}
+
+.scorers-grid {
+display: flex;
+flex-direction: column;
+gap: 10px;
+}
+
+.scorer-card {
+display: flex;
+align-items: center;
+gap: 10px;
+min-width: 0;
+padding: 10px;
+background: #0b1220;
+border: 1px solid #1f3150;
+border-radius: 9px;
+}
+
+.scorer-card img {
+width: 38px;
+height: 38px;
+flex-shrink: 0;
+object-fit: contain;
+}
+
+.scorer-info {
+flex: 1;
+min-width: 0;
+}
+
+.scorer-info h3 {
+margin: 0;
+font-size: 13px;
+}
+
+.scorer-info p {
+margin: 4px 0 0;
+color: #aebed4;
+font-size: 11px;
+}
+
+.scorer-goals {
+font-size: 14px;
+font-weight: 800;
+white-space: nowrap;
+}
+
+/* Tablet and mobile */
+@media (max-width: 900px) {
+.league-info {
+grid-template-columns: minmax(0, 1fr);
+gap: 20px;
+max-width: 750px;
+}
+}
+
+@media (max-width: 480px) {
+.league-info {
+margin: 15px auto;
+padding: 10px;
+}
+
+.table-container,
+.scorers-section {
+    padding: 10px;
+}
+
+.table-heading h2,
+.scorers-section h2 {
+    font-size: 18px;
+}
+
+.goalhub-table {
+    min-width: 540px;
+}
+
+.goalhub-table thead th,
+.goalhub-table tbody td {
+    padding: 9px 6px;
+    font-size: 11px;
+}
+
+.goalhub-table tbody td.goalhub-team {
+    min-width: 140px;
+}
+
+}
+
+/* FIX: LEAGUE TABLE AND TOP SCORERS LAYOUT */
+
+.league-info {
+    display: grid !important;
+    grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr) !important;
+    gap: 24px;
+    width: 100%;
+    max-width: 1400px;
+    margin: 30px auto;
+    padding: 20px;
+    align-items: start;
+}
+
+.league-info > * {
+    min-width: 0;
+}
+
+.league-info .table-container {
+    width: 100%;
+    max-width: none;
+}
+
+.league-info .scorers-section {
+    width: 100%;
+    max-width: none;
+}
+
+/* TABLET AND PHONE LAYOUT */
+
+@media (max-width: 900px) {
+    .league-info {
+        grid-template-columns: minmax(0, 1fr) !important;
+    }
+}
+/* GoalHub League Table and Top Scorers Layout */
+.league-info {
+    display: grid !important;
+    grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr) !important;
+    gap: 24px;
+    width: 100%;
+    max-width: 1400px;
+    margin: 30px auto;
+    padding: 20px;
+    align-items: start;
+}
+
+.league-table-section {
+    width: 100%;
+    min-width: 0;
+}
+
+.league-table-section .table-heading {
+    width: 100%;
+    margin-bottom: 18px;
+}
+
+.league-table-section .table-container {
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+}
+
+.league-info .scorers-section {
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+}
+
+@media (max-width: 900px) {
+    .league-info {
+        grid-template-columns: minmax(0, 1fr) !important;
+    }
+}
+/* LIVE LEAGUE SELECTOR */
+.live-league-selector {
+display: flex;
+align-items: center;
+gap: 12px;
+flex-wrap: wrap;
+margin: 20px 0;
+padding: 15px;
+background: #111c30;
+border: 1px solid #263650;
+border-radius: 10px;
+}
+
+.live-league-selector label {
+color: #cbd5e1;
+font-size: 14px;
+font-weight: 600;
+}
+
+.live-league-selector select {
+min-width: 200px;
+padding: 10px 12px;
+color: white;
+background: #0b1220;
+border: 1px solid #334766;
+border-radius: 7px;
+font-size: 14px;
+outline: none;
+}
+
+.live-league-selector select:focus {
+border-color: #087cff;
+}
+
+/* LIVE COMPETITION SECTIONS */
+.live-competition-section {
+margin: 24px 0;
+padding: 16px;
+background: #111c30;
+border: 1px solid #263650;
+border-radius: 12px;
+}
+
+.live-competition-section h3,
+.pinned-live-section h3 {
+margin: 0 0 16px;
+padding-bottom: 12px;
+color: white;
+border-bottom: 1px solid #2a3b55;
+font-size: 18px;
+}
+
+/* PINNED LIVE MATCHES */
+.pinned-live-section {
+margin: 20px 0;
+padding: 16px;
+background: #14243b;
+border: 1px solid #087cff;
+border-radius: 12px;
+}
+
+/* LIVE MATCH CARDS */
+.live-competition-section .live-match,
+.pinned-live-section .live-match {
+margin-bottom: 12px;
+}
+
+.live-competition-section .live-match:last-child,
+.pinned-live-section .live-match:last-child {
+margin-bottom: 0;
+}
+
+/* NO LIVE MATCHES MESSAGE */
+.no-live-matches {
+margin: 20px 0;
+padding: 18px;
+color: #cbd5e1;
+background: #111c30;
+border: 1px solid #263650;
+border-radius: 10px;
+text-align: center;
+}
+
+/* MOBILE LAYOUT */
+@media (max-width: 600px) {
+.live-league-selector {
+align-items: stretch;
+flex-direction: column;
+}
+
+.live-league-selector select {
+    width: 100%;
+    min-width: 0;
+}
+
+.live-competition-section,
+.pinned-live-section {
+    padding: 12px;
+}
+
+.live-competition-section h3,
+.pinned-live-section h3 {
+    font-size: 16px;
+}
+
+}
