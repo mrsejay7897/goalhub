@@ -3670,3 +3670,183 @@ flex-direction: column;
 }
 
 }
+/* =========================================
+GOALHUB LIVE SCORES — CARD BEAUTIFICATION
+========================================= */
+
+#live {
+padding: 35px 24px;
+}
+
+#live h2 {
+max-width: 1100px;
+margin: 0 auto 22px;
+font-size: 28px;
+font-weight: 800;
+}
+
+#live .live-filter {
+max-width: 1100px;
+margin: 0 auto 22px;
+display: flex;
+align-items: center;
+flex-wrap: wrap;
+gap: 12px;
+}
+
+#live .live-filter label {
+color: #b7c0d0;
+font-size: 14px;
+font-weight: 700;
+}
+
+#live #live-league-filter {
+min-width: 190px;
+max-width: 100%;
+padding: 11px 14px;
+background: #111c30;
+color: #ffffff;
+border: 1px solid #29466d;
+border-radius: 9px;
+font-size: 14px;
+outline: none;
+}
+
+#live #live-league-filter:focus {
+border-color: #087cff;
+}
+
+#live-matches {
+max-width: 1100px;
+margin: 0 auto;
+}
+
+#live-matches .live-card {
+min-width: 0;
+padding: 18px;
+background: linear-gradient(145deg, #14223a, #0e192b);
+border: 1px solid #263b59;
+border-radius: 14px;
+border-left: 3px solid #087cff;
+box-shadow: 0 5px 18px rgba(0, 0, 0, 0.16);
+transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+#live-matches .live-card:hover {
+border-color: #087cff;
+transform: translateY(-2px);
+}
+
+#live-matches .live-card-league {
+margin: 0 0 14px;
+color: #65aaff;
+font-size: 11px;
+font-weight: 800;
+text-transform: uppercase;
+letter-spacing: 0.8px;
+}
+
+#live-matches .live-card-teams {
+display: grid;
+grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+align-items: center;
+gap: 12px;
+}
+
+#live-matches .live-card-teams span {
+min-width: 0;
+color: #f1f5fb;
+font-size: 14px;
+font-weight: 600;
+line-height: 1.5;
+overflow-wrap: anywhere;
+}
+
+#live-matches .live-card-teams span:first-child {
+text-align: left;
+}
+
+#live-matches .live-card-teams span:last-child {
+text-align: right;
+}
+
+#live-matches .live-card-teams strong {
+color: #ffffff;
+font-size: 21px;
+font-weight: 800;
+white-space: nowrap;
+}
+
+#live-matches .live-card-status {
+margin: 15px 0 0;
+padding-top: 12px;
+border-top: 1px solid #263750;
+color: #aebed4;
+font-size: 12px;
+font-weight: 700;
+text-align: center;
+}
+
+#live-matches .live-card button {
+display: block;
+margin: 13px auto 0;
+padding: 8px 14px;
+background: #172943;
+color: #dce8fa;
+border: 1px solid #304866;
+border-radius: 7px;
+font-size: 12px;
+font-weight: 700;
+cursor: pointer;
+transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+#live-matches .live-card button:hover {
+background: #087cff;
+border-color: #087cff;
+color: #ffffff;
+}
+
+#live .sportscore-credit {
+max-width: 1100px;
+margin: 18px auto 0;
+color: #8295af;
+font-size: 12px;
+}
+
+#live .sportscore-credit a {
+color: #65aaff;
+}
+
+/* Mobile layout */
+
+@media (max-width: 600px) {
+#live {
+padding: 25px 14px;
+}
+
+#live h2 {
+    font-size: 23px;
+}
+
+#live #live-league-filter {
+    width: 100%;
+}
+
+#live-matches .live-card {
+    padding: 14px 12px;
+}
+
+#live-matches .live-card-teams {
+    gap: 7px;
+}
+
+#live-matches .live-card-teams span {
+    font-size: 12px;
+}
+
+#live-matches .live-card-teams strong {
+    font-size: 18px;
+}
+
+}

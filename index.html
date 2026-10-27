@@ -57,6 +57,19 @@
 
         <h2>🔴 Live Scores</h2>
 
+        <div class="live-filter">
+            <label for="live-league-filter">Choose League:</label>
+            <select id="live-league-filter" onchange="loadGoalHubLiveScores()">
+                <option value="all">All Competitions</option>
+                <option value="Premier League">Premier League</option>
+                <option value="La Liga">La Liga</option>
+                <option value="Serie A">Serie A</option>
+                <option value="Ligue 1">Ligue 1</option>
+                <option value="Bundesliga">Bundesliga</option>
+                <option value="UEFA Champions League">Champions League</option>
+            </select>
+        </div>
+
         <div id="live-matches" class="live-matches">
             <p>Loading live matches...</p>
         </div>
