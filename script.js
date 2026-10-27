@@ -726,6 +726,22 @@ let ghPinnedLiveMatches = JSON.parse(
     localStorage.getItem("ghPinnedLiveMatches") || "[]"
 );
 
+// Additional information for pinned matches
+let ghPinnedMatchDetails = JSON.parse(
+    localStorage.getItem("ghPinnedMatchDetails") || "{}"
+);
+
+// Keep the latest details of live matches
+let ghLiveMatchCache = {};
+
+// Save pinned match details
+function saveGoalHubPinnedMatchDetails() {
+    localStorage.setItem(
+        "ghPinnedMatchDetails",
+        JSON.stringify(ghPinnedMatchDetails)
+    );
+}
+
 // Load live matches
 async function loadGoalHubLiveScores() {
 
@@ -753,10 +769,11 @@ try {
     const results = await Promise.allSettled(
         competitions.map(async function(league) {
 
-            const response = await fetch(
-                "https://sportscore.com/api/v1/fixtures/?sport=football&status=live&competition=" +
-                league.slug
-            );
+          const response = await fetch(
+    "https://sportscore.com/api/v1/fixtures/?sport=football&competition=" +
+    league.slug +
+    "&date=" + new Date().toISOString().slice(0, 10)
+);
 
             if (!response.ok) {
                 throw new Error(
@@ -765,11 +782,12 @@ try {
             }
 
             const data = await response.json();
-
-            const liveMatchesForLeague = (
+const liveMatchesForLeague = (
     Array.isArray(data.matches) ? data.matches : []
 ).filter(function(match) {
-    return String(match.status || "").toLowerCase() === "live";
+    const status = String(match.status || "").toLowerCase();
+
+    return status === "live" || status === "finished";
 });
 
 const detailedMatches = await Promise.all(
@@ -849,10 +867,57 @@ return detailedMatches;
         ).values()
     );
 
-    // Identify pinned matches and sort them to the top.
-const pinnedMatches = uniqueLive.filter(function(match) {
-return ghPinnedLiveMatches.includes(String(match.id || match.url || ""));
+// Update pinned matches and track when they finish.
+const now = Date.now();
+
+ghPinnedLiveMatches = ghPinnedLiveMatches.filter(function(matchID) {
+    const liveMatch = uniqueLive.find(function(match) {
+        return String(match.id || match.url || "") === matchID;
+    });
+
+    const savedDetails = ghPinnedMatchDetails[matchID];
+
+    // Update details when the match is available.
+    if (liveMatch) {
+        const wasFinished = savedDetails?.finishedAt;
+
+        ghPinnedMatchDetails[matchID] = {
+            match: liveMatch,
+            pinnedAt: savedDetails?.pinnedAt || now,
+            finishedAt:
+                String(liveMatch.status || "").toLowerCase() === "finished"
+                    ? (wasFinished || now)
+                    : null
+        };
+    }
+
+    const details = ghPinnedMatchDetails[matchID];
+
+    // Remove a finished match after 10 minutes.
+    if (
+        details?.finishedAt &&
+        now - details.finishedAt >= 10 * 60 * 1000
+    ) {
+        delete ghPinnedMatchDetails[matchID];
+        return false;
+    }
+
+    return true;
 });
+
+// Save pinned IDs and their latest details.
+localStorage.setItem(
+    "ghPinnedLiveMatches",
+    JSON.stringify(ghPinnedLiveMatches)
+);
+
+saveGoalHubPinnedMatchDetails();
+
+const pinnedMatches = ghPinnedLiveMatches
+    .map(function(matchID) {
+        return ghPinnedMatchDetails[matchID]?.match || null;
+    })
+    .filter(Boolean);
 
 // Group matches by competition.
 const groupedMatches = {};
@@ -887,12 +952,19 @@ function renderLiveMatch(match) {
     const matchID = String(match.id || match.url || "");
     const isPinned = ghPinnedLiveMatches.includes(matchID);
 
+    // Keep the latest match details available
+ghLiveMatchCache[matchID] = match;
+
     const home = match.home || "Home Team";
     const away = match.away || "Away Team";
     const homeScore = match.home_score ?? "-";
     const awayScore = match.away_score ?? "-";
 
-    const statusText = match.live_minute
+   const matchStatus = String(match.status || "").toLowerCase();
+
+const statusText = matchStatus === "finished"
+    ? "FULL TIME"
+    : match.live_minute
         ? `LIVE · ${match.live_minute}′`
         : (match.status_text || "LIVE");
 
@@ -900,7 +972,9 @@ function renderLiveMatch(match) {
         <article class="live-card ${isPinned ? "pinned-live" : ""}">
             <div class="live-card-top">
                 <span class="league">${match.competition || "Football"}</span>
-                <span class="live-badge">🔴 LIVE</span>
+             <span class="live-badge">
+    ${matchStatus === "finished" ? "⚽ FULL TIME" : "🔴 LIVE"}
+</span>
             </div>
 
             <div class="live-match">
@@ -962,14 +1036,14 @@ let displayHTML = `
 `;
 
 if (pinnedMatches.length > 0 && selectedLeague === "all") {
-    displayHTML += `
-        <section class="live-competition-group">
-            <h3 class="live-competition-heading">📌 Pinned Live Matches</h3>
-            <div class="live-matches-grid">
-                ${pinnedMatches.map(renderLiveMatch).join("")}
-            </div>
-        </section>
-    `;
+displayHTML += `
+    <section class="live-competition-group">
+        <h3 class="live-competition-heading">📌 Pinned Matches</h3>
+        <div class="live-matches-grid">
+            ${pinnedMatches.map(renderLiveMatch).join("")}
+        </div>
+    </section>
+`;
 }
 
 competitionNames.forEach(function(name) {
@@ -1019,29 +1093,39 @@ liveMatches.innerHTML = displayHTML;
 }
 
 }
-
 // Pin or unpin a live match
 function toggleGoalHubPinnedMatch(matchID) {
+if (ghPinnedLiveMatches.includes(matchID)) {
+ghPinnedLiveMatches = ghPinnedLiveMatches.filter(function(id) {
+return id !== matchID;
+});
 
-    if (ghPinnedLiveMatches.includes(matchID)) {
+    delete ghPinnedMatchDetails[matchID];
+    saveGoalHubPinnedMatchDetails();
 
-        ghPinnedLiveMatches = ghPinnedLiveMatches.filter(
-            function(id) {
-                return id !== matchID;
-            }
-        );
+} else {
+    ghPinnedLiveMatches.push(matchID);
 
-    } else {
+    if (ghLiveMatchCache[matchID]) {
+        ghPinnedMatchDetails[matchID] = {
+            match: ghLiveMatchCache[matchID],
+            pinnedAt: Date.now(),
+            finishedAt: null
+        };
 
-        ghPinnedLiveMatches.push(matchID);
+        saveGoalHubPinnedMatchDetails();
     }
+}
 
-    localStorage.setItem(
-        "ghPinnedLiveMatches",
-        JSON.stringify(ghPinnedLiveMatches)
-    );
+localStorage.setItem(
+    "ghPinnedLiveMatches",
+    JSON.stringify(ghPinnedLiveMatches)
+);
 
-    loadGoalHubLiveScores();
+saveGoalHubPinnedMatchDetails();
+
+loadGoalHubLiveScores();
+
 }
 
 // Make the function accessible to the HTML button
