@@ -1,0 +1,3 @@
+[submodule "goalhub-server"]
+    path = goalhub-server
+    url = https://github.com/mrsejay7897/goalhub-server.git
