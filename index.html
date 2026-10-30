@@ -24,13 +24,21 @@
             <a href="#table">Tables</a>
             <a href="#scorers">Top Scorers</a>
             <a href="#news">News</a>
-            <a href="#predictions">Predictions</a>
         </nav>
 
     </header>
 
 
     <!-- Hero Section -->
+     <!-- GoalHub Search Bar --><div class="goalhub-search">
+    <input
+        type="search"
+        id="goalhubSearchInput"
+        placeholder="Search teams, matches or leagues..."
+        aria-label="Search teams, matches or leagues"
+    >
+    <button type="button" id="goalhubSearchButton">Search</button>
+</div><div id="goalhubSearchResults" class="goalhub-search-results"></div>
     <section id="home" class="hero">
 
         <div class="hero-content">
@@ -44,7 +52,6 @@
 
             <div class="hero-buttons">
                 <a href="#live">Live Scores</a>
-                <a href="#predictions">Make a Prediction</a>
             </div>
 
         </div>
@@ -136,7 +143,7 @@
         </select>
     </div>
 
-    <div class="table-container">
+    <div class="table-container" id="table">
         <table class="goalhub-table">
             <thead>
                 <tr>
@@ -466,6 +473,178 @@
     <!-- JavaScript -->
     <script src="script.js"></script>
 
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.getElementById("goalhubSearchInput");
+    const searchButton = document.getElementById("goalhubSearchButton");
+    const resultsBox = document.getElementById("goalhubSearchResults");
+
+    if (!searchInput || !searchButton || !resultsBox) {
+        return;
+    }
+
+    function searchGoalHub() {
+        const query = searchInput.value.trim().toLowerCase();
+
+        resultsBox.replaceChildren();
+
+        if (!query) {
+            resultsBox.textContent = "Enter a team, match or league to search.";
+            return;
+        }
+
+        const searchableElements = document.querySelectorAll(
+            "h1, h2, h3, .match-card, .fixture-card, .news-card, " +
+            ".goalhub-table tbody tr, #league-table tr, " +
+            ".top-scorer-card, .standings-team, .team-card"
+        );
+
+        const matches = [];
+        const seen = new Set();
+
+        searchableElements.forEach(function (element) {
+            if (element.closest(".goalhub-search")) {
+                return;
+            }
+
+            const text = element.innerText.trim();
+
+            if (
+                text &&
+                text.toLowerCase().includes(query) &&
+                !seen.has(text)
+            ) {
+                seen.add(text);
+                matches.push(element);
+            }
+        });
+
+        if (matches.length === 0) {
+            resultsBox.textContent =
+                "No matching information found. Try another team or league.";
+            return;
+        }
+
+        const heading = document.createElement("p");
+        heading.textContent = "Found " + matches.length + " result(s):";
+        resultsBox.appendChild(heading);
+
+        matches.slice(0, 10).forEach(function (element) {
+            const result = document.createElement("button");
+
+            result.type = "button";
+            result.textContent = element.innerText.trim().replace(/\s+/g, " ");
+
+            result.style.display = "block";
+            result.style.width = "100%";
+            result.style.textAlign = "left";
+            result.style.padding = "10px";
+            result.style.marginBottom = "6px";
+            result.style.border = "1px solid #263750";
+            result.style.borderRadius = "6px";
+            result.style.background = "#111c30";
+            result.style.color = "white";
+            result.style.cursor = "pointer";
+
+            result.addEventListener("click", function () {
+                element.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center"
+                });
+
+                element.style.outline = "2px solid #087cff";
+
+                setTimeout(function () {
+                    element.style.outline = "";
+                }, 2000);
+            });
+
+            resultsBox.appendChild(result);
+        });
+    }
+
+    searchButton.addEventListener("click", searchGoalHub);
+
+    searchInput.addEventListener("keydown", function (event) {
+        if (event.key === "Enter") {
+            searchGoalHub();
+        }
+    });
+});
+</script>
+<script>
+async function loadGoalHubNews() {
+    const newsList = document.getElementById("news-list");
+
+    if (!newsList) return;
+
+    newsList.innerHTML = "<p>Loading football news...</p>";
+
+    try {
+        const response = await fetch(
+            "https://goalhub-server-kiy9.onrender.com/api/news"
+        );
+
+        if (!response.ok) {
+            throw new Error("News server returned HTTP " + response.status);
+        }
+
+        const data = await response.json();
+
+        if (
+            data.status !== "ok" ||
+            !Array.isArray(data.articles) ||
+            data.articles.length === 0
+        ) {
+            throw new Error("No news articles were returned.");
+        }
+
+        newsList.replaceChildren();
+
+        data.articles.forEach(function (article) {
+            const card = document.createElement("article");
+            card.className = "news-card";
+
+            const title = document.createElement("h3");
+            title.textContent = article.title || "Football News";
+            card.appendChild(title);
+
+            if (article.image) {
+                const image = document.createElement("img");
+                image.src = article.image;
+                image.alt = article.title || "Football news";
+                image.loading = "lazy";
+                image.onerror = function () {
+                    image.remove();
+                };
+                card.appendChild(image);
+            }
+
+            const description = document.createElement("p");
+            description.textContent =
+                article.description || "Read the latest football news.";
+            card.appendChild(description);
+
+            const link = document.createElement("a");
+            link.href = article.link;
+            link.textContent = "Read Full Story";
+            link.target = "_blank";
+            link.rel = "noopener noreferrer";
+            card.appendChild(link);
+
+            newsList.appendChild(card);
+        });
+
+    } catch (error) {
+        console.error("GoalHub news error:", error);
+
+        newsList.innerHTML =
+            "<p>Football news is temporarily unavailable. Please try again later.</p>";
+    }
+}
+
+loadGoalHubNews();
+</script>
 </body>
 
 </html>

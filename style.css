@@ -3850,3 +3850,571 @@ padding: 25px 14px;
 }
 
 }
+
+/* ==========================================
+   GOALHUB LIVE MATCHES - PROFESSIONAL LAYOUT
+   ========================================== */
+
+/* Arrange cards in two columns on larger screens */
+#live-matches {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    align-items: stretch;
+    width: 100%;
+    min-width: 0;
+}
+
+/* Individual match card */
+#live-matches > .match-card {
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    padding: 12px;
+    height: 100%;
+    background: linear-gradient(145deg, #14243b, #0e192b);
+    border: 1px solid #263b59;
+    border-radius: 12px;
+    color: #ffffff;
+    overflow: hidden;
+    transition: border-color 0.2s ease;
+}
+
+#live-matches > .match-card:hover {
+    border-color: #087cff;
+}
+
+/* Competition and kickoff time */
+#live-matches .match-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+    padding-bottom: 9px;
+    border-bottom: 1px solid #263750;
+}
+
+#live-matches .match-league {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
+    color: #aebed4;
+    font-size: 10px;
+    font-weight: 800;
+    overflow-wrap: anywhere;
+}
+
+#live-matches .league-dot {
+    width: 7px;
+    height: 7px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: #087cff;
+}
+
+#live-matches .match-time {
+    flex-shrink: 0;
+    color: #dce8fa;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+/* Home team, score and away team */
+#live-matches .match-card-teams {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 65px minmax(0, 1fr);
+    align-items: center;
+    justify-items: stretch;
+    gap: 8px;
+    padding: 18px 0;
+    min-height: 115px;
+}
+
+#live-matches .match-team {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    min-width: 0;
+    text-align: center;
+}
+
+#live-matches .match-team .team-logo {
+    display: block;
+    width: 34px;
+    height: 34px;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+#live-matches .match-team .team-name {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.35;
+    overflow-wrap: anywhere;
+}
+
+#live-matches .live-match-score {
+    display: block;
+    color: #ffffff;
+    font-size: 19px;
+    font-weight: 800;
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* Match status and pin button */
+#live-matches .match-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 10px;
+    min-height: 36px;
+    padding-top: 9px;
+    border-top: 1px solid #263750;
+}
+
+#live-matches .live-card-status {
+    flex: 1;
+    min-width: 0;
+    text-align: left;
+}
+
+#live-matches .match-card-footer button {
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+#live-matches .live-card-status {
+    color: #79b5ff;
+    font-size: 10px;
+    font-weight: 800;
+    overflow-wrap: anywhere;
+}
+
+#live-matches .match-card-footer button {
+    padding: 7px 10px;
+    background: #087cff;
+    color: #ffffff;
+    border: none;
+    border-radius: 7px;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+#live-matches .match-card-footer button:hover {
+    background: #0066d6;
+}
+
+/* Empty-state and error cards */
+#live-matches > .live-card:not(.match-card) {
+    grid-column: 1 / -1;
+    padding: 16px;
+    background: #111c30;
+    border: 1px solid #263b59;
+    border-radius: 12px;
+    color: #ffffff;
+}
+
+/* Phone layout */
+@media (max-width: 600px) {
+    #live-matches {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 12px;
+    }
+
+    #live-matches .match-card-teams {
+        grid-template-columns: minmax(0, 1fr) 60px minmax(0, 1fr);
+        gap: 8px;
+    }
+
+    #live-matches .match-team .team-logo {
+        width: 36px;
+        height: 36px;
+    }
+
+    #live-matches .live-match-score {
+        font-size: 20px;
+    }
+}
+
+/* GoalHub Search Bar */
+.goalhub-search {
+width: 92%;
+max-width: 700px;
+margin: 20px auto;
+display: flex;
+gap: 10px;
+align-items: stretch;
+}
+
+.goalhub-search input {
+flex: 1;
+min-width: 0;
+padding: 13px 15px;
+border: 1px solid #263750;
+border-radius: 8px;
+background: #111c30;
+color: white;
+font-size: 16px;
+outline: none;
+}
+
+.goalhub-search input:focus {
+border-color: #087cff;
+}
+
+.goalhub-search button {
+padding: 13px 18px;
+border: none;
+border-radius: 8px;
+background: #087cff;
+color: white;
+font-size: 15px;
+font-weight: bold;
+cursor: pointer;
+}
+
+.goalhub-search-results {
+width: 92%;
+max-width: 700px;
+margin: -10px auto 20px;
+color: white;
+}
+
+@media (max-width: 480px) {
+.goalhub-search {
+gap: 7px;
+}
+
+.goalhub-search button {
+    padding: 12px;
+}
+
+}
+/* =================================
+   GOALHUB FOOTBALL NEWS REDESIGN
+================================= */
+
+.news-section {
+    width: 94%;
+    max-width: 1250px;
+    margin: 40px auto;
+    padding: 25px;
+    box-sizing: border-box;
+}
+
+.news-section h2 {
+    font-size: 28px;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #087cff;
+}
+
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+    align-items: stretch;
+}
+
+.news-card {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    padding: 22px;
+    background: #111c30;
+    border: 1px solid #263750;
+    border-radius: 12px;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease,
+                transform 0.2s ease;
+}
+
+.news-card:hover {
+    border-color: #087cff;
+    transform: translateY(-3px);
+}
+
+.news-card h3 {
+    color: #ffffff;
+    font-size: 18px;
+    line-height: 1.5;
+    margin: 0 0 15px;
+    overflow-wrap: anywhere;
+}
+
+.news-card p {
+    color: #c5d0e0;
+    font-size: 14px;
+    line-height: 1.8;
+    margin: 0 0 20px;
+}
+
+.news-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 16px;
+}
+
+.news-card a {
+    display: inline-block;
+    width: fit-content;
+    margin-top: auto;
+    padding: 10px 14px;
+    background: #087cff;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 6px;
+}
+
+.news-card a:hover {
+    background: #0065d6;
+}
+
+/* Tablets */
+@media (max-width: 900px) {
+    .news-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+    }
+
+    .news-section {
+        padding: 15px;
+    }
+}
+
+/* Mobile phones */
+@media (max-width: 600px) {
+    .news-section {
+        width: 100%;
+        margin: 25px auto;
+        padding: 14px;
+    }
+
+    .news-section h2 {
+        font-size: 23px;
+        margin-bottom: 18px;
+    }
+
+    .news-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .news-card {
+        padding: 18px;
+    }
+
+    .news-card h3 {
+        font-size: 17px;
+    }
+
+    .news-card img {
+        height: 200px;
+    }
+}
+/* GoalHub Recent Form - Football Style */
+
+.recent-form-circles {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 15px 0;
+}
+
+.recent-form-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    min-width: 42px;
+}
+
+.form-circle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+    transition: transform 0.2s ease;
+}
+
+.form-circle:hover {
+    transform: scale(1.12);
+}
+
+.form-w {
+    background: #16a34a;
+}
+
+.form-d {
+    background: #64748b;
+}
+
+.form-l {
+    background: #dc2626;
+}
+
+.recent-form-item small {
+    color: #cbd5e1;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.recent-form-team {
+    background: #111c30;
+    border: 1px solid #26364f;
+    border-radius: 12px;
+    padding: 16px;
+    min-width: 0;
+}
+
+.recent-form-team h4 {
+    margin: 0 0 12px;
+    color: #ffffff;
+    font-size: 16px;
+    text-align: center;
+}
+
+.recent-form-team .recent-results {
+    width: 100%;
+}
+
+.recent-results > p {
+    color: #94a3b8;
+    font-size: 13px;
+    text-align: center;
+}
+
+@media (max-width: 600px) {
+    .recent-form-circles {
+        gap: 9px;
+    }
+
+    .form-circle {
+        width: 32px;
+        height: 32px;
+        font-size: 12px;
+    }
+
+    .recent-form-team {
+        padding: 12px 8px;
+    }
+}
+/* GoalHub recent match rows */
+.recent-matches-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+.recent-match-row {
+    display: grid;
+    grid-template-columns: 48px minmax(0, 1fr) 62px minmax(0, 1fr);
+    align-items: center;
+    gap: 8px;
+    padding: 10px;
+    background: #0b1220;
+    border: 1px solid #26364f;
+    border-left: 3px solid #64748b;
+    border-radius: 8px;
+    min-width: 0;
+}
+
+.recent-match-row.match-w {
+    border-left-color: #16a34a;
+}
+
+.recent-match-row.match-d {
+    border-left-color: #64748b;
+}
+
+.recent-match-row.match-l {
+    border-left-color: #dc2626;
+}
+
+.recent-match-date {
+    color: #94a3b8;
+    font-size: 10px;
+    text-align: center;
+}
+
+.recent-match-team {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
+    font-size: 12px;
+    color: #e2e8f0;
+}
+
+.recent-match-team.home {
+    justify-content: flex-end;
+}
+
+.recent-match-team.away {
+    justify-content: flex-start;
+}
+
+.recent-match-team span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.recent-match-badge {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.recent-match-score {
+    text-align: center;
+    font-size: 13px;
+    color: #ffffff;
+    white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+    .recent-match-row {
+        grid-template-columns: 38px minmax(0, 1fr) 52px minmax(0, 1fr);
+        gap: 5px;
+        padding: 8px 5px;
+    }
+
+    .recent-match-team {
+        font-size: 10px;
+        gap: 3px;
+    }
+
+    .recent-match-badge {
+        width: 18px;
+        height: 18px;
+    }
+
+    .recent-match-score {
+        font-size: 12px;
+    }
+}

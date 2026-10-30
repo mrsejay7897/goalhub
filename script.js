@@ -182,8 +182,9 @@ const results = await Promise.all(
                 `https://sportscore.com/api/v1/fixtures/?sport=football&date=${date}&competition=${encodeURIComponent(leagueKey)}&limit=200`;
 
             try {
-                const response = await fetch(url);
-
+              const response = await fetch(url, {
+    signal: AbortSignal.timeout(10000)
+});
                 if (!response.ok) {
                     console.warn(
                         `Fixtures request failed for ${date}:`,
@@ -371,6 +372,460 @@ loadUpcomingMatches(upcomingLeagueSelect.value);
 
 }
 
+
+// ========================================
+// GoalHub Match Centre - Match Selector
+// ========================================
+
+(function () {
+    const leagueSelect = document.getElementById("league-select");
+    const matchSelect = document.getElementById("match-select");
+    const matchDate = document.getElementById("match-date");
+    const loadButton = document.getElementById("load-match-btn");
+    const message = document.getElementById("match-selector-message");
+
+    if (!leagueSelect || !matchSelect || !matchDate || !loadButton) {
+        console.warn("GoalHub Match Centre: HTML elements not found.");
+        return;
+    }
+
+    let availableMatches = [];
+
+    function localDate() {
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = String(now.getMonth() + 1).padStart(2, "0");
+        const day = String(now.getDate()).padStart(2, "0");
+        return `${year}-${month}-${day}`;
+    }
+
+    async function loadMatchOptions() {
+        const league = leagueSelect.value;
+        const date = matchDate.value || localDate();
+
+        matchSelect.innerHTML = '<option value="">Loading matches...</option>';
+        message.textContent = "Loading available fixtures...";
+
+        try {
+            const url =
+                "https://sportscore.com/api/v1/fixtures/" +
+                "?sport=football&date=" + encodeURIComponent(date) +
+                "&competition=" + encodeURIComponent(league) +
+                "&limit=200";
+
+            const response = await fetch(url);
+
+            if (!response.ok) {
+                throw new Error("Fixture request failed: " + response.status);
+            }
+
+            const data = await response.json();
+
+            availableMatches = Array.isArray(data.matches)
+                ? data.matches
+                : [];
+
+            matchSelect.innerHTML = "";
+
+            if (availableMatches.length === 0) {
+                matchSelect.innerHTML =
+                    '<option value="">No matches found for this date</option>';
+
+                message.textContent =
+                    "No fixtures found. Try another date.";
+
+                return;
+            }
+
+            matchSelect.appendChild(new Option("Choose a match", ""));
+
+            availableMatches.forEach(function (match, index) {
+                const time = match.time
+                    ? new Date(match.time).toLocaleTimeString("en-KE", {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                        hour12: false
+                    })
+                    : "Time unavailable";
+
+                matchSelect.appendChild(
+                    new Option(
+                        `${match.home} vs ${match.away} — ${time}`,
+                        String(index)
+                    )
+                );
+            });
+
+            message.textContent =
+                availableMatches.length + " fixture(s) found.";
+
+        } catch (error) {
+            console.error("GoalHub Match Centre fixtures:", error);
+
+            matchSelect.innerHTML =
+                '<option value="">Unable to load matches</option>';
+
+            message.textContent =
+                "Could not load fixtures. Please try again.";
+        }
+    }
+
+    async function loadMatchStandings(homeTeam, awayTeam) {
+    const league = leagueSelect.value;
+
+    const fields = {
+        home: {
+            name: "home-standing-name",
+            position: "home-position",
+            points: "home-points",
+            played: "home-played",
+            goals: "home-goals"
+        },
+        away: {
+            name: "away-standing-name",
+            position: "away-position",
+            points: "away-points",
+            played: "away-played",
+            goals: "away-goals"
+        }
+    };
+
+    function updateTeam(side, teamName, row) {
+        const ids = fields[side];
+
+        document.getElementById(ids.name).textContent = teamName;
+        document.getElementById(ids.position).textContent = row ? row.pos : "—";
+        document.getElementById(ids.points).textContent = row ? row.pts : "—";
+        document.getElementById(ids.played).textContent = row ? row.p : "—";
+        document.getElementById(ids.goals).textContent = row ? row.gd : "—";
+    }
+
+    try {
+        const url =
+            "https://sportscore.com/api/widget/standings/" +
+            "?sport=football&slug=" + encodeURIComponent(league);
+
+        const response = await fetch(url);
+
+        if (!response.ok) {
+            throw new Error("Standings request failed: " + response.status);
+        }
+
+        const data = await response.json();
+        const tables = data.tables;
+        const rows = tables && tables[0] && tables[0].rows;
+
+        if (!Array.isArray(rows)) {
+            throw new Error("Standings data was not available.");
+        }
+
+        function findTeam(name) {
+            return rows.find(row =>
+                row.team &&
+                (
+                    row.team.name?.toLowerCase() === name.toLowerCase() ||
+                    row.team.toLowerCase?.() === name.toLowerCase()
+                )
+            );
+        }
+
+        updateTeam("home", homeTeam, findTeam(homeTeam));
+        updateTeam("away", awayTeam, findTeam(awayTeam));
+
+    } catch (error) {
+        console.error("GoalHub standings:", error);
+        updateTeam("home", homeTeam, null);
+        updateTeam("away", awayTeam, null);
+    }
+}
+async function loadRecentResults(homeTeam, awayTeam) {
+    const homeBox = document.getElementById("home-recent-results");
+    const awayBox = document.getElementById("away-recent-results");
+
+    const homeHeading = document.getElementById("home-form-name");
+    const awayHeading = document.getElementById("away-form-name");
+
+    if (!homeBox || !awayBox) return;
+
+    if (homeHeading) homeHeading.textContent = homeTeam;
+    if (awayHeading) awayHeading.textContent = awayTeam;
+
+    homeBox.innerHTML = "<p>Loading recent results...</p>";
+    awayBox.innerHTML = "<p>Loading recent results...</p>";
+
+    function teamSlug(name) {
+        return (name || "")
+            .toLowerCase()
+            .trim()
+            .replace(/&/g, "and")
+            .replace(/[^a-z0-9]+/g, "-")
+            .replace(/^-|-$/g, "");
+    }
+
+    async function getTeamResults(teamName) {
+        const results = [];
+        const slug = teamSlug(teamName);
+
+        for (let daysAgo = 1; daysAgo <= 60 && results.length < 5; daysAgo++) {
+            const date = new Date();
+            date.setDate(date.getDate() - daysAgo);
+
+            const dateString =
+                date.getFullYear() + "-" +
+                String(date.getMonth() + 1).padStart(2, "0") + "-" +
+                String(date.getDate()).padStart(2, "0");
+
+            const url =
+                "https://sportscore.com/api/v1/fixtures/" +
+                "?sport=football" +
+                "&date=" + dateString +
+                "&team=" + encodeURIComponent(slug) +
+                "&status=finished&limit=200";
+
+            try {
+                const response = await fetch(url);
+                if (!response.ok) continue;
+
+                const data = await response.json();
+
+                const matches = (data.matches || [])
+                    .filter(match =>
+                        match.status === "finished" &&
+                        match.home_score != null &&
+                        match.away_score != null
+                    )
+                    .sort((a, b) => new Date(b.time) - new Date(a.time));
+
+                for (const match of matches) {
+                    const isHome =
+                        teamSlug(match.home) === slug ||
+                        match.home === teamName;
+
+                    const isAway =
+                        teamSlug(match.away) === slug ||
+                        match.away === teamName;
+
+                    if (!isHome && !isAway) continue;
+
+                    const goalsFor = Number(
+                        isHome ? match.home_score : match.away_score
+                    );
+                    const goalsAgainst = Number(
+                        isHome ? match.away_score : match.home_score
+                    );
+
+                    const outcome =
+                        goalsFor > goalsAgainst ? "W" :
+                        goalsFor < goalsAgainst ? "L" : "D";
+
+                        results.push({
+    home: match.home,
+    away: match.away,
+    homeLogo: match.home_logo,
+    awayLogo: match.away_logo,
+    homeScore: Number(match.home_score),
+    awayScore: Number(match.away_score),
+    opponent: isHome ? match.away : match.home,
+    goalsFor,
+    goalsAgainst,
+    outcome,
+    date: match.time
+});
+
+                    if (results.length >= 5) break;
+                }
+            } catch (error) {
+                console.warn("Could not load fixtures for", dateString, error);
+            }
+        }
+
+        return results;
+    }
+
+   function renderResults(container, results) {
+    if (!results.length) {
+        container.innerHTML = "<p>No completed results found.</p>";
+        return;
+    }
+
+    container.innerHTML = `
+        <div class="recent-matches-list">
+            ${results.map(result => {
+                const date = result.date
+                    ? new Date(result.date).toLocaleDateString("en-KE", {
+                        day: "numeric",
+                        month: "short"
+                    })
+                    : "";
+
+                const outcomeClass = "match-" + result.outcome.toLowerCase();
+
+                return `
+                    <div class="recent-match-row ${outcomeClass}">
+                        <span class="recent-match-date">${date}</span>
+
+                        <div class="recent-match-team home">
+                            <img
+                                src="${result.homeLogo || ""}"
+                                alt=""
+                                class="recent-match-badge"
+                                onerror="this.style.display='none'"
+                            >
+                            <span>${result.home}</span>
+                        </div>
+
+                        <strong class="recent-match-score">
+                            ${result.homeScore} - ${result.awayScore}
+                        </strong>
+
+                        <div class="recent-match-team away">
+                            <span>${result.away}</span>
+                            <img
+                                src="${result.awayLogo || ""}"
+                                alt=""
+                                class="recent-match-badge"
+                                onerror="this.style.display='none'"
+                            >
+                        </div>
+                    </div>
+                `;
+            }).join("")}
+        </div>
+    `;
+}
+
+    const [homeResults, awayResults] = await Promise.all([
+        getTeamResults(homeTeam),
+        getTeamResults(awayTeam)
+    ]);
+
+    renderResults(homeBox, homeResults);
+    renderResults(awayBox, awayResults);
+}
+async function loadHeadToHead(homeTeam, awayTeam) {
+    const resultsContainer = document.getElementById("head-to-head-results");
+    const homeName = document.getElementById("home-h2h-name");
+    const awayName = document.getElementById("away-h2h-name");
+    const homeWinsElement = document.getElementById("home-h2h-wins");
+    const awayWinsElement = document.getElementById("away-h2h-wins");
+    const drawsElement = document.getElementById("h2h-draws");
+
+    if (homeName) homeName.textContent = homeTeam;
+    if (awayName) awayName.textContent = awayTeam;
+    if (resultsContainer) resultsContainer.textContent = "Loading head-to-head results...";
+    if (homeWinsElement) homeWinsElement.textContent = "—";
+    if (awayWinsElement) awayWinsElement.textContent = "—";
+    if (drawsElement) drawsElement.textContent = "—";
+
+    try {
+        const url =
+            "https://goalhub-server-kiy9.onrender.com/api/head-to-head" +
+            "?home=" + encodeURIComponent(homeTeam) +
+            "&away=" + encodeURIComponent(awayTeam);
+
+        const response = await fetch(url);
+
+        if (!response.ok) {
+            throw new Error("Head-to-head request failed: " + response.status);
+        }
+
+        const data = await response.json();
+
+        if (data.status !== "ok") {
+            throw new Error(data.message || "Head-to-head data unavailable.");
+        }
+
+        const matches = Array.isArray(data.matches) ? data.matches : [];
+        let homeWins = 0;
+        let awayWins = 0;
+        let draws = 0;
+
+        matches.forEach(match => {
+        
+
+            const homeScore = Number(match.home_score);
+            const awayScore = Number(match.away_score);
+            if (!Number.isFinite(homeScore) || !Number.isFinite(awayScore)) {
+                return;
+            }
+
+            if (homeScore === awayScore) {
+                draws++;
+            } else if (match.home === homeTeam) {
+                if (homeScore > awayScore) homeWins++;
+                else awayWins++;
+            } else {
+                if (homeScore > awayScore) awayWins++;
+                else homeWins++;
+            }
+        });
+
+        if (homeWinsElement) homeWinsElement.textContent = homeWins;
+        if (awayWinsElement) awayWinsElement.textContent = awayWins;
+        if (drawsElement) drawsElement.textContent = draws;
+
+        if (resultsContainer) {
+            if (matches.length === 0) {
+                resultsContainer.textContent = "No head-to-head results available.";
+            } else {
+                resultsContainer.innerHTML = matches.map(match => `
+                    <div class="h2h-result">
+                       <span>${match.home || "Home"} ${match.home_score ?? "—"} - ${match.away_score ?? "—"} ${match.away || "Away"}</span>
+                    </div>
+                `).join("");
+            }
+        }
+    } catch (error) {
+        console.error("GoalHub head-to-head:", error);
+        if (resultsContainer) {
+            resultsContainer.textContent = "Unable to load head-to-head results. Please try again later.";
+        }
+    }
+}
+    function displaySelectedMatch() {
+        const index = matchSelect.value;
+
+        if (index === "" || !availableMatches[Number(index)]) {
+            message.textContent = "Please select a match first.";
+            return;
+        }
+
+        const match = availableMatches[Number(index)];
+
+        loadHeadToHead(match.home, match.away);
+
+        const homeName = document.getElementById("home-team-name");
+        const awayName = document.getElementById("away-team-name");
+        const kickoff = document.getElementById("match-kickoff");
+
+        if (homeName) homeName.textContent = match.home || "Home";
+        if (awayName) awayName.textContent = match.away || "Away";
+
+        if (kickoff) {
+            kickoff.textContent = match.time
+                ? new Date(match.time).toLocaleString("en-KE", {
+                    dateStyle: "medium",
+                    timeStyle: "short"
+                })
+                : "Kick-off time unavailable";
+        }
+
+
+        loadMatchStandings(match.home, match.away);
+        loadRecentResults(match.home, match.away);
+
+        message.textContent =
+            "Selected " + match.home + " vs " + match.away + ".";
+    }
+
+    leagueSelect.addEventListener("change", loadMatchOptions);
+    matchDate.addEventListener("change", loadMatchOptions);
+    matchSelect.addEventListener("change", displaySelectedMatch);
+    loadButton.addEventListener("click", displaySelectedMatch);
+
+    matchDate.value = localDate();
+    loadMatchOptions();
+})();
 // ================================
 // GoalHub Multi-League Table
 // ================================
@@ -972,6 +1427,20 @@ const matchesToDisplay = uniqueLive.filter(function(match) {
         .includes(selectedLeague.toLowerCase());
 });
 
+// Move pinned matches to the top of the list
+matchesToDisplay.sort(function(a, b) {
+    const aID = String(a.id || a.url || "");
+    const bID = String(b.id || b.url || "");
+
+    const aPinned = ghPinnedLiveMatches.includes(aID);
+    const bPinned = ghPinnedLiveMatches.includes(bID);
+
+    if (aPinned && !bPinned) return -1;
+    if (!aPinned && bPinned) return 1;
+
+    return 0;
+});
+
 if (matchesToDisplay.length === 0) {
     liveMatches.innerHTML = `
         <div class="live-card">
@@ -991,23 +1460,75 @@ if (matchesToDisplay.length === 0) {
         const matchID = String(match.id || match.url || "");
         const isPinned = ghPinnedLiveMatches.includes(matchID);
 
-        return `
-            <div class="live-card">
-                <p class="live-card-league">
-                    ${match.competition || "Football"}
-                </p>
-                <div class="live-card-teams">
-                    <span>${home}</span>
-                    <strong>${homeScore} - ${awayScore}</strong>
-                    <span>${away}</span>
-                </div>
-                <p class="live-card-status">${status}</p>
-                <button type="button"
-                    onclick="toggleGoalHubPinnedMatch('${matchID}')">
-                    ${isPinned ? "Unpin Match" : "Pin Match"}
-                </button>
+    return `
+    <article class="match-card live-card">
+
+        <div class="match-card-header">
+            <span class="match-league">
+                <span class="league-dot"></span>
+                ${(match.competition || "Football").toUpperCase()}
+            </span>
+
+            <span class="match-time">
+                ${match.time ? formatMatchTime(match.time) : "Time unavailable"}
+            </span>
+        </div>
+
+        <div class="match-card-teams">
+
+            <div class="match-team">
+                ${match.home_logo ? `
+                    <img
+                        src="${match.home_logo}"
+                        alt=""
+                        class="team-logo"
+                        loading="lazy"
+                        onerror="this.style.display='none'">
+                ` : ""}
+
+                <span class="team-name" title="${match.home || match.home_team || "Home"}">
+                    ${match.home || match.home_team || "Home"}
+                </span>
             </div>
-        `;
+
+            <strong class="live-match-score">
+                ${match.home_score ?? match.homeScore ?? "-"} -
+                ${match.away_score ?? match.awayScore ?? "-"}
+            </strong>
+
+            <div class="match-team match-team-away">
+                ${match.away_logo ? `
+                    <img
+                        src="${match.away_logo}"
+                        alt=""
+                        class="team-logo"
+                        loading="lazy"
+                        onerror="this.style.display='none'">
+                ` : ""}
+
+                <span class="team-name" title="${match.away || match.away_team || "Away"}">
+                    ${match.away || match.away_team || "Away"}
+                </span>
+            </div>
+
+        </div>
+
+        <div class="match-card-footer">
+            <span class="live-card-status">
+                ${String(match.status || "Match").replace(/_/g, " ").toUpperCase()}
+            </span>
+
+            <button
+                type="button"
+                onclick="toggleGoalHubPinnedMatch('${String(match.id || match.url || "")}')">
+                ${ghPinnedLiveMatches.includes(String(match.id || match.url || ""))
+                    ? "Unpin Match"
+                    : "Pin Match"}
+            </button>
+        </div>
+
+    </article>
+`;
     }).join("");
 }
 
